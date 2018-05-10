@@ -20,10 +20,6 @@ int Polynomial::getDegree() {
     return size - 1;
 }
 
-int Polynomial::getSize() {
-    return size;
-}
-
 Polynomial::~Polynomial() {
     delete []coeffs;
 }

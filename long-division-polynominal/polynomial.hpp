@@ -13,7 +13,6 @@ public:
     Polynomial(double[], int);
     ~Polynomial();
     int getDegree();
-    int getSize();
 private:
     double *coeffs; // array of terms
     int size; // = highest degree + 1
