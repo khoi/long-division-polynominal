@@ -11,20 +11,22 @@
 class Polynomial {
 public:
     Polynomial(double[], int);
-    Polynomial(const Polynomial &p);
+    Polynomial(const Polynomial& p);
     ~Polynomial();
-     int getDegree() const;
+    int getDegree() const;
 
-    Polynomial & operator+= (const Polynomial &rhs);
-    Polynomial & operator-= (const Polynomial &rhs);
+    Polynomial& operator+=(const Polynomial& rhs);
+    Polynomial& operator-=(const Polynomial& rhs);
+    Polynomial& operator*=(const Polynomial& rhs);
+
 private:
-    double *coeffs; // array of terms
+    double* coeffs; // array of terms
     int size; // = highest degree + 1
-    friend std::ostream &operator<<(std::ostream &os, const Polynomial &p);
-    friend bool operator==(const Polynomial &lhs, const Polynomial &rhs);
+    friend std::ostream& operator<<(std::ostream& os, const Polynomial& p);
+    friend bool operator==(const Polynomial& lhs, const Polynomial& rhs);
 };
 
-Polynomial operator+(const Polynomial &lhs, const Polynomial &rhs);
-Polynomial operator-(const Polynomial &lhs, const Polynomial &rhs);
-
+Polynomial operator+(const Polynomial& lhs, const Polynomial& rhs);
+Polynomial operator-(const Polynomial& lhs, const Polynomial& rhs);
+Polynomial operator*(const Polynomial& lhs, const Polynomial& rhs);
 
