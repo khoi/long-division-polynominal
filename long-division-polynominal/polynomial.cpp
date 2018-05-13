@@ -168,8 +168,9 @@ std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
         double coeff = p.coeffs[i];
         int pow = p.getDegree() - i;
 
-        if (coeff == 0)
-            continue;
+        if (coeff == 0 && p.size > 1) {
+             continue;
+        }
 
         if (coeff == 1.0) {
             if (i > 0) {
