@@ -10,7 +10,9 @@
 
 Polynomial::Polynomial(double c[], int s) {
     coeffs = new double[s];
-    memcpy(coeffs, c, s * sizeof(double));
+    for (int i = 0; i < s; ++i) {
+        coeffs[i] = c[i];
+    }
     size = s;
 }
 
@@ -112,8 +114,8 @@ std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
     for (int i = 0; i < p.size; ++i) {
         if (p.coeffs[i] == 0) continue;
         int pow = p.getDegree() - i;
-        os << ((i == 0) ? std::noshowpos : std::showpos) << p.coeffs[i] ;
 
+        os << ((i == 0) ? std::noshowpos : std::showpos) << p.coeffs[i] ;
         if (pow > 0) {
             os << "*" << "x";
             if (pow > 1) {
