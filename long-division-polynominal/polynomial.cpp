@@ -112,10 +112,11 @@ bool operator==(const Polynomial &lhs, const Polynomial &rhs) {
 
 std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
     for (int i = 0; i < p.size; ++i) {
-        if (p.coeffs[i] == 0) continue;
+        int coeff = p.coeffs[i];
+        if (coeff == 0) continue;
         int pow = p.getDegree() - i;
 
-        os << ((i == 0) ? std::noshowpos : std::showpos) << p.coeffs[i] ;
+        os << ((i == 0) ? std::noshowpos : std::showpos) << coeff ;
         if (pow > 0) {
             os << "*" << "x";
             if (pow > 1) {
