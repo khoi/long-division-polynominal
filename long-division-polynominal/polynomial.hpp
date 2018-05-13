@@ -19,6 +19,7 @@ public:
     Polynomial& operator-=(const Polynomial& rhs);
     Polynomial& operator*=(const Polynomial& rhs);
     Polynomial& operator*=(double val);
+    Polynomial& operator/=(const Polynomial& rhs);
     Polynomial& operator/=(double val);
 
 
