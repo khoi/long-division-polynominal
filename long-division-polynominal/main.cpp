@@ -44,11 +44,21 @@ int main(int argc, const char * argv[]) {
         double b[] = {9, 2, 3, 4, 2};
         Polynomial p1(a, 8);
         Polynomial p2(b, 5);
-        cout << "p1 = " << p1 << endl;
-        cout << "p2 = " << p2 << endl;
 
-        p1 -= p2;
-        cout << p1 << endl;
+        cout <<  p1 << endl;
+        cout << "+" << endl;
+        cout <<  p2 << endl;
+        cout << "_____" << endl;
+        cout << p1 + p2 << endl;
+
+        cout << endl;
+
+        cout <<  p1 << endl;
+        cout << "-" << endl;
+        cout <<  p2 << endl;
+        cout << "_____" << endl;
+        cout << p1 - p2 << endl;
+
         return 0;
     }
 
