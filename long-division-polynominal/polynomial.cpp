@@ -110,6 +110,18 @@ Polynomial &Polynomial::operator*=(double val) {
   return *this;
 }
 
+Polynomial &Polynomial::operator/=(double val) {
+    double *newCoeffs = new double[size];
+
+    for (int i = size - 1; i >= 0; --i) {
+        newCoeffs[i] = coeffs[i] / val;
+    }
+
+    delete[] coeffs;
+    coeffs = newCoeffs;
+    return *this;
+}
+
 Polynomial operator+(const Polynomial &lhs, const Polynomial &rhs) {
   Polynomial result(lhs);
   result += rhs;
@@ -134,6 +146,12 @@ Polynomial operator*(const Polynomial &lhs, double rhs) {
   return result;
 }
 
+Polynomial operator/(const Polynomial &lhs, double rhs) {
+    Polynomial result(lhs);
+    result /= rhs;
+    return result;
+}
+
 bool operator==(const Polynomial &lhs, const Polynomial &rhs) {
   if (lhs.size != rhs.size)
     return false;
@@ -147,7 +165,7 @@ bool operator==(const Polynomial &lhs, const Polynomial &rhs) {
 
 std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
   for (int i = 0; i < p.size; ++i) {
-    int coeff = p.coeffs[i];
+    double coeff = p.coeffs[i];
     if (coeff == 0)
       continue;
     int pow = p.getDegree() - i;
@@ -161,5 +179,5 @@ std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
       }
     }
   }
-  return os;
+  return os << std::noshowpos;
 }

@@ -45,34 +45,41 @@ int main(int argc, const char *argv[]) {
     Polynomial p1(a, 3);
     Polynomial p2(b, 2);
 
-    cout << p1 << endl;
-    cout << "+" << endl;
-    cout << p2 << endl;
-    cout << "_____" << endl;
-    cout << p1 + p2 << endl;
-    cout << endl;
+//    cout << p1 << endl;
+//    cout << "+" << endl;
+//    cout << p2 << endl;
+//    cout << "_____" << endl;
+//    cout << p1 + p2 << endl;
+//    cout << endl;
+//
+//    cout << p2 << endl;
+//    cout << "-" << endl;
+//    cout << p1 << endl;
+//    cout << "_____" << endl;
+//    cout << p2 - p1 << endl;
+//    cout << endl;
+//
+//    cout << p1 << endl;
+//    cout << "*" << endl;
+//    cout << p2 << endl;
+//    cout << "_____" << endl;
+//    cout << p1 * p2 << endl;
+//    cout << endl;
+//
+//    cout << p1 << endl;
+//    cout << "*" << endl;
+//    cout << 3 << endl;
+//    cout << "_____" << endl;
+//    cout << p1 * 3 << endl;
+//    cout << endl;
 
-    cout << p2 << endl;
-    cout << "-" << endl;
-    cout << p1 << endl;
-    cout << "_____" << endl;
-    cout << p2 - p1 << endl;
-    cout << endl;
-
-    cout << p1 << endl;
-    cout << "*" << endl;
-    cout << p2 << endl;
-    cout << "_____" << endl;
-    cout << p1 * p2 << endl;
-    cout << endl;
-
-    cout << p1 << endl;
-    cout << "*" << endl;
-    cout << 3 << endl;
-    cout << "_____" << endl;
-    cout << p1 * 3 << endl;
-    cout << endl;
-
+      cout << p1 << endl;
+      cout << "/" << endl;
+      cout << 2 << endl;
+      Polynomial result = p1 / 2;
+      cout << "_____" << endl;
+      cout << result << endl;
+      cout << endl;
     return 0;
   }
 
