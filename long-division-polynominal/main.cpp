@@ -45,40 +45,47 @@ int main(int argc, const char *argv[]) {
         Polynomial p1(a, 7);
         Polynomial p2(b, 4);
 
-        cout << p1 << endl;
-        cout << "+" << endl;
-        cout << p2 << endl;
-        cout << "_____" << endl;
-        cout << p1 + p2 << endl;
-        cout << endl;
-
-        cout << p2 << endl;
-        cout << "-" << endl;
-        cout << p1 << endl;
-        cout << "_____" << endl;
-        cout << p2 - p1 << endl;
-        cout << endl;
+//        cout << p1 << endl;
+//        cout << "+" << endl;
+//        cout << p2 << endl;
+//        cout << "_____" << endl;
+//        cout << p1 + p2 << endl;
+//        cout << endl;
+//
+//        cout << p2 << endl;
+//        cout << "-" << endl;
+//        cout << p1 << endl;
+//        cout << "_____" << endl;
+//        cout << p2 - p1 << endl;
+//        cout << endl;
+//
+//        cout << p1 << endl;
+//        cout << "*" << endl;
+//        cout << p2 << endl;
+//        cout << "_____" << endl;
+//        cout << p1 * p2 << endl;
+//        cout << endl;
+//
+//        cout << p1 << endl;
+//        cout << "*" << endl;
+//        cout << 3 << endl;
+//        cout << "_____" << endl;
+//        cout << p1 * 3 << endl;
+//        cout << endl;
 
         cout << p1 << endl;
         cout << "*" << endl;
-        cout << p2 << endl;
+        cout << 0 << endl;
         cout << "_____" << endl;
-        cout << p1 * p2 << endl;
+        cout << p1 * 0 << endl;
         cout << endl;
 
-        cout << p1 << endl;
-        cout << "*" << endl;
-        cout << 3 << endl;
-        cout << "_____" << endl;
-        cout << p1 * 3 << endl;
-        cout << endl;
-
-        cout << p1 << endl;
-        cout << "/" << endl;
-        cout << 2 << endl;
-        cout << "_____" << endl;
-        cout << p1 / 2 << endl;
-        cout << endl;
+//        cout << p1 << endl;
+//        cout << "/" << endl;
+//        cout << 2 << endl;
+//        cout << "_____" << endl;
+//        cout << p1 / 2 << endl;
+//        cout << endl;
         return 0;
     }
 

@@ -113,6 +113,14 @@ Polynomial &Polynomial::operator*=(const Polynomial &rhs) {
 }
 
 Polynomial &Polynomial::operator*=(double val) {
+    if ((getDegree() == 0 && coeffs[0] == 0) ||
+        (val == 0.0)) {
+        size = 1;
+        coeffs = new double[size];
+        coeffs[0] = 0;
+        return *this;
+    }
+
     double *newCoeffs = new double[size];
 
     for (int i = size - 1; i >= 0; --i) {
