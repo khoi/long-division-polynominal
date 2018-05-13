@@ -40,10 +40,10 @@ int main(int argc, const char *argv[]) {
     }
 
     if (isInNormalMode) {
-        double a[] = {2, -3, 0, 0, -1, -1, 9};
-        double b[] = {1, 1};
+        double a[] = {-1, 2, -2, 0, 1, -1, -1};
+        double b[] = {1, 0, 1, -3};
         Polynomial p1(a, 7);
-        Polynomial p2(b, 2);
+        Polynomial p2(b, 4);
 
         cout << p1 << endl;
         cout << "+" << endl;

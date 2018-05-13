@@ -173,14 +173,16 @@ std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
 
         if (coeff == 1.0) {
             if (i > 0) {
-                if (pow >= 1) {
+                if (pow >= 1)
                     std::cout << "+";
-                } else {
+                else
                     std::cout << (i > 0 ? "+" : "") << coeff;
-                }
             }
         } else if (coeff == -1.0) {
-            std::cout << "-";
+            if (pow >= 1)
+                std::cout << "-";
+            else
+                std::cout << coeff;
         } else if (coeff < 0.0) {
             std::cout << "-" << -coeff << (pow != 0 ? "*" : "");
         } else {
