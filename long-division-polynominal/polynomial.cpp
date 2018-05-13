@@ -98,6 +98,18 @@ Polynomial &Polynomial::operator*=(const Polynomial &rhs) {
   return *this;
 }
 
+Polynomial &Polynomial::operator*=(double val) {
+  double *newCoeffs = new double[size];
+
+  for (int i = size - 1; i >= 0; --i) {
+    newCoeffs[i] = coeffs[i] * val;
+  }
+
+  delete[] coeffs;
+  coeffs = newCoeffs;
+  return *this;
+}
+
 Polynomial operator+(const Polynomial &lhs, const Polynomial &rhs) {
   Polynomial result(lhs);
   result += rhs;
@@ -111,6 +123,12 @@ Polynomial operator-(const Polynomial &lhs, const Polynomial &rhs) {
 }
 
 Polynomial operator*(const Polynomial &lhs, const Polynomial &rhs) {
+  Polynomial result(lhs);
+  result *= rhs;
+  return result;
+}
+
+Polynomial operator*(const Polynomial &lhs, double rhs) {
   Polynomial result(lhs);
   result *= rhs;
   return result;

@@ -18,6 +18,7 @@ public:
     Polynomial& operator+=(const Polynomial& rhs);
     Polynomial& operator-=(const Polynomial& rhs);
     Polynomial& operator*=(const Polynomial& rhs);
+    Polynomial& operator*=(double val);
 
 private:
     double* coeffs; // array of terms
@@ -29,4 +30,4 @@ private:
 Polynomial operator+(const Polynomial& lhs, const Polynomial& rhs);
 Polynomial operator-(const Polynomial& lhs, const Polynomial& rhs);
 Polynomial operator*(const Polynomial& lhs, const Polynomial& rhs);
-
+Polynomial operator*(const Polynomial& lhs, double rhs);
