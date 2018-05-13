@@ -8,6 +8,12 @@
 
 #include "polynomial.hpp"
 
+Polynomial::Polynomial() {
+    size = 1;
+    coeffs = new double[size];
+    coeffs[0] = 0.0;
+}
+
 Polynomial::Polynomial(double c[], int s) {
     coeffs = new double[s];
     for (int i = 0; i < s; ++i) {
@@ -76,6 +82,14 @@ Polynomial &Polynomial::operator-=(const Polynomial &rhs) {
 }
 
 Polynomial &Polynomial::operator*=(const Polynomial &rhs) {
+    if ((getDegree() == 0 && coeffs[0] == 0) ||
+        (rhs.getDegree() == 0 && rhs.coeffs[0] == 0)) {
+        size = 1;
+        coeffs = new double[size];
+        coeffs[0] = 0;
+        return *this;
+    }
+
     int newSize = getDegree() + rhs.getDegree() + 1;
     double *newCoeffs = new double[newSize];
 
@@ -169,7 +183,7 @@ std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
         int pow = p.getDegree() - i;
 
         if (coeff == 0 && p.size > 1) {
-             continue;
+            continue;
         }
 
         if (coeff == 1.0) {
