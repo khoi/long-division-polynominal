@@ -12,7 +12,9 @@ class Polynomial {
 public:
     Polynomial(double[], int);
     ~Polynomial();
-    int getDegree();
+     int getDegree() const;
+
+    Polynomial & operator+= (const Polynomial &rhs);
 private:
     double *coeffs; // array of terms
     int size; // = highest degree + 1

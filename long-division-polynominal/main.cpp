@@ -41,7 +41,13 @@ int main(int argc, const char * argv[]) {
 
     if (isInNormalMode) {
         double a[] = {10, 0, 3, 0, 0, -5, 0, 4};
+        double b[] = {9, 2, 3};
         Polynomial p1(a, 8);
+        Polynomial p2(b, 3);
+        cout << "p1 = " << p1 << endl;
+        cout << "p2 = " << p2 << endl;
+
+        p1 += p2;
         cout << p1 << endl;
         return 0;
     }
