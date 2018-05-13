@@ -53,11 +53,11 @@ int main(int argc, const char * argv[]) {
 
         cout << endl;
 
-        cout <<  p1 << endl;
-        cout << "-" << endl;
         cout <<  p2 << endl;
+        cout << "-" << endl;
+        cout <<  p1 << endl;
         cout << "_____" << endl;
-        cout << p1 - p2 << endl;
+        cout << p2 - p1 << endl;
 
         return 0;
     }

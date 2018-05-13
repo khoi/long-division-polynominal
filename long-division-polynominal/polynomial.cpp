@@ -36,27 +36,22 @@ Polynomial &Polynomial::operator+=(const Polynomial &rhs) {
     int newSize = std::max(size, rhs.size);
     double *newCoeffs = new double[newSize];
 
-    for (int i = 0; i < newSize; ++i) {
+    for (int i = newSize - 1; i >= 0; --i) {
         newCoeffs[i] = 0;
+        int pow = newSize - i - 1;
+
+        int lhsIdx = getDegree() - pow;
+        int rhsIdx = rhs.getDegree() - pow;
+
+        if (lhsIdx >= 0) newCoeffs[i] += coeffs[lhsIdx];
+        if (rhsIdx >= 0) newCoeffs[i] += rhs.coeffs[rhsIdx];
     }
 
-    for (int i = 0; i < size; ++i) {
-        int coeff = coeffs[i];
-        int pow = getDegree() - i;
-        int idxInNewCoeffs = newSize - pow - 1;
-        newCoeffs[idxInNewCoeffs] += coeff;
-    }
-
-    for (int i = 0; i < rhs.size; ++i) {
-        int coeff = rhs.coeffs[i];
-        int pow = rhs.getDegree() - i;
-        int idxInNewCoeffs = newSize - pow - 1;
-        newCoeffs[idxInNewCoeffs] += coeff;
-    }
 
     delete []coeffs;
     coeffs = newCoeffs;
     size = newSize;
+
     return *this;
 }
 
@@ -64,22 +59,15 @@ Polynomial &Polynomial::operator-=(const Polynomial &rhs) {
     int newSize = std::max(size, rhs.size);
     double *newCoeffs = new double[newSize];
 
-    for (int i = 0; i < newSize; ++i) {
+    for (int i = newSize - 1; i >= 0; --i) {
         newCoeffs[i] = 0;
-    }
+        int pow = newSize - i - 1;
 
-    for (int i = 0; i < size; ++i) {
-        int coeff = coeffs[i];
-        int pow = getDegree() - i;
-        int idxInNewCoeffs = newSize - pow - 1;
-        newCoeffs[idxInNewCoeffs] += coeff;
-    }
+        int lhsIdx = getDegree() - pow;
+        int rhsIdx = rhs.getDegree() - pow;
 
-    for (int i = 0; i < rhs.size; ++i) {
-        int coeff = rhs.coeffs[i];
-        int pow = rhs.getDegree() - i;
-        int idxInNewCoeffs = newSize - pow - 1;
-        newCoeffs[idxInNewCoeffs] -= coeff;
+        if (lhsIdx >= 0) newCoeffs[i] += coeffs[lhsIdx];
+        if (rhsIdx >= 0) newCoeffs[i] -= rhs.coeffs[rhsIdx];
     }
 
     delete []coeffs;
