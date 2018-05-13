@@ -15,6 +15,7 @@ public:
      int getDegree() const;
 
     Polynomial & operator+= (const Polynomial &rhs);
+    Polynomial & operator-= (const Polynomial &rhs);
 private:
     double *coeffs; // array of terms
     int size; // = highest degree + 1
