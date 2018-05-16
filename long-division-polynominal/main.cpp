@@ -10,8 +10,36 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 using namespace std;
+
+void replaceSubstr(std::string& str,
+               const std::string& oldStr,
+               const std::string& newStr)
+{
+    std::string::size_type pos = 0u;
+    while((pos = str.find(oldStr, pos)) != std::string::npos){
+        str.replace(pos, oldStr.length(), newStr);
+        pos += newStr.length();
+    }
+}
+
+vector<string> split(const string& str, const string& delim)
+{
+    vector<string> tokens;
+    size_t prev = 0, pos = 0;
+    do
+    {
+        pos = str.find(delim, prev);
+        if (pos == string::npos) pos = str.length();
+        string token = str.substr(prev, pos-prev);
+        if (!token.empty()) tokens.push_back(token);
+        prev = pos + delim.length();
+    }
+    while (pos < str.length() && prev < str.length());
+    return tokens;
+}
 
 int main(int argc, const char *argv[]) {
     if (argc == 1) {
@@ -40,53 +68,19 @@ int main(int argc, const char *argv[]) {
     }
 
     if (isInNormalMode) {
-        double a[] = {-1, 2, -2, 0, 1, -1, -1};
-        double b[] = {1, 0, 1, -3};
-        Polynomial p1(a, 7);
-        Polynomial p2(b, 4);
+        cout << "Enter dividend: ";
+        string dividend;
+        string delim = "+";
+        cin >> dividend;
+        replaceSubstr(dividend, "-", "+-");
+        vector<string> terms = split(dividend, delim);
 
-//        cout << p1 << endl;
-//        cout << "+" << endl;
-//        cout << p2 << endl;
-//        cout << "_____" << endl;
-//        cout << p1 + p2 << endl;
-//        cout << endl;
-//
-//        cout << p2 << endl;
-//        cout << "-" << endl;
-//        cout << p1 << endl;
-//        cout << "_____" << endl;
-//        cout << p2 - p1 << endl;
-//        cout << endl;
-//
-//        cout << p1 << endl;
-//        cout << "*" << endl;
-//        cout << p2 << endl;
-//        cout << "_____" << endl;
-//        cout << p1 * p2 << endl;
-//        cout << endl;
-//
-//        cout << p1 << endl;
-//        cout << "*" << endl;
-//        cout << 3 << endl;
-//        cout << "_____" << endl;
-//        cout << p1 * 3 << endl;
-//        cout << endl;
+        for (vector<string>::const_iterator i = terms.begin(); i != terms.end(); ++i) {
+            string term = *i;
+            cout << term << endl;
+        }
 
-        cout << p1 << endl;
-        cout << "*" << endl;
-        cout << 0 << endl;
-        cout << "_____" << endl;
-        cout << p1 * 0 << endl;
-        cout << endl;
 
-//        cout << p1 << endl;
-//        cout << "/" << endl;
-//        cout << 2 << endl;
-//        cout << "_____" << endl;
-//        cout << p1 / 2 << endl;
-//        cout << endl;
-        return 0;
     }
 
     return 1;
