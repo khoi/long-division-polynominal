@@ -11,6 +11,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <map>
 
 using namespace std;
 
@@ -74,6 +75,7 @@ int main(int argc, const char *argv[]) {
         cin >> dividend;
         replaceSubstr(dividend, "-", "+-");
         vector<string> terms = split(dividend, delim);
+        map<int, double> powAndCoeff;
 
         for (vector<string>::const_iterator i = terms.begin(); i != terms.end(); ++i) {
             string term = *i;
@@ -87,7 +89,8 @@ int main(int argc, const char *argv[]) {
                 if (hasPow) {
                     string powString = term.substr(positionOfPowChar + 1);
                     stringstream ss1(powString);
-                    int pow, coeff;
+                    int pow;
+                    double coeff;
                     if (!(ss1 >> pow && ss1.eof())) {
                         cout << term << " is not a valid term." << endl;
                         return 1;
@@ -95,7 +98,7 @@ int main(int argc, const char *argv[]) {
 
                     string coeffString = term.substr(0, positionOfX);
                     stringstream ss2(coeffString);
-                    int coeffConversionFail = (ss2 >> coeff).fail();
+                    bool coeffConversionFail = (ss2 >> coeff).fail();
                     string remainString;
                     getline(ss2, remainString);
 
@@ -107,9 +110,10 @@ int main(int argc, const char *argv[]) {
                         return 1;
                     }
                     cout << " has pow " << pow << " and coeff " << coeff;
+                    powAndCoeff[pow] += coeff;
                 } else { // Having pow == 1. For instance: -3*x
                     int pow = 1;
-                    int coeff = 0;
+                    double coeff = 0;
                     string coeffString = term.substr(0, positionOfX);
                     stringstream ss(coeffString);
                     int coeffConversionFail = (ss >> coeff).fail();
@@ -120,22 +124,26 @@ int main(int argc, const char *argv[]) {
                         cout << term << " is not a valid term." << endl;
                         return 1;
                     }
-
                     cout << " has pow " << pow << " and coeff " << coeff;
+                    powAndCoeff[pow] += coeff;
                 }
             } else {
-                int coeff;
+                double coeff;
                 stringstream ss(term);
                 if (!(ss >> coeff && ss.eof())) {
                     cout << term << " is not a valid term." << endl;
                     return 1;
                 }
                 cout << " has pow " << 0 << " and coeff " << coeff;
+                powAndCoeff[0] += coeff;
             }
             cout << " " << term << endl;
         }
 
-
+        for(auto elem : powAndCoeff)
+        {
+            cout << elem.first << " " << elem.second << "\n";
+        }
     }
 
     return 1;
