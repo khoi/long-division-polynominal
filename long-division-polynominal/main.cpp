@@ -72,6 +72,7 @@ int main(int argc, const char *argv[]) {
         cout << "Enter dividend: ";
         string dividend;
         string delim = "+";
+        int degree = INT_MIN;
         cin >> dividend;
         replaceSubstr(dividend, "-", "+-");
         vector<string> terms = split(dividend, delim);
@@ -111,6 +112,7 @@ int main(int argc, const char *argv[]) {
                     }
                     cout << " has pow " << pow << " and coeff " << coeff;
                     powAndCoeff[pow] += coeff;
+                    if (pow > degree) degree = pow;
                 } else { // Having pow == 1. For instance: -3*x
                     int pow = 1;
                     double coeff = 0;
@@ -126,24 +128,34 @@ int main(int argc, const char *argv[]) {
                     }
                     cout << " has pow " << pow << " and coeff " << coeff;
                     powAndCoeff[pow] += coeff;
+                    if (pow > degree) degree = pow;
                 }
             } else {
                 double coeff;
+                int pow = 0;
                 stringstream ss(term);
                 if (!(ss >> coeff && ss.eof())) {
                     cout << term << " is not a valid term." << endl;
                     return 1;
                 }
-                cout << " has pow " << 0 << " and coeff " << coeff;
-                powAndCoeff[0] += coeff;
+                cout << " has pow " << pow << " and coeff " << coeff;
+                powAndCoeff[pow] += coeff;
+                if (pow > degree) degree = pow;
             }
             cout << " " << term << endl;
         }
 
+        int size = degree + 1;
+        double *coeffs = new double[size];
         for(auto elem : powAndCoeff)
         {
-            cout << elem.first << " " << elem.second << "\n";
+            int pow = elem.first;
+            int coeff = elem.second;
+            coeffs[degree - pow] = coeff;
         }
+
+        Polynomial p1(coeffs, size);
+        cout << p1 << endl;
     }
 
     return 1;
