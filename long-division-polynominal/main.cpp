@@ -77,7 +77,62 @@ int main(int argc, const char *argv[]) {
 
         for (vector<string>::const_iterator i = terms.begin(); i != terms.end(); ++i) {
             string term = *i;
-            cout << term << endl;
+
+            unsigned long positionOfX = term.find('x');
+            bool hasX = positionOfX != string::npos;
+
+            if (hasX) {
+                unsigned long positionOfPowChar = term.find("^");
+                bool hasPow = positionOfPowChar != string::npos;
+                if (hasPow) {
+                    string powString = term.substr(positionOfPowChar + 1);
+                    stringstream ss1(powString);
+                    int pow, coeff;
+                    if (!(ss1 >> pow && ss1.eof())) {
+                        cout << term << " is not a valid term." << endl;
+                        return 1;
+                    }
+
+                    string coeffString = term.substr(0, positionOfX);
+                    stringstream ss2(coeffString);
+                    int coeffConversionFail = (ss2 >> coeff).fail();
+                    string remainString;
+                    getline(ss2, remainString);
+
+                    if (coeffString.length() == 0) { // case where coeff = 1. For instance: x^3
+                        coeff = 1;
+                    }
+                    else if (coeffConversionFail || remainString != "*") {
+                        cout << term << " is not a valid term." << endl;
+                        return 1;
+                    }
+                    cout << " has pow " << pow << " and coeff " << coeff;
+                } else { // Having pow == 1. For instance: -3*x
+                    int pow = 1;
+                    int coeff = 0;
+                    string coeffString = term.substr(0, positionOfX);
+                    stringstream ss(coeffString);
+                    int coeffConversionFail = (ss >> coeff).fail();
+                    string remainString;
+                    getline(ss, remainString);
+
+                    if (coeffConversionFail || remainString != "*") {
+                        cout << term << " is not a valid term." << endl;
+                        return 1;
+                    }
+
+                    cout << " has pow " << pow << " and coeff " << coeff;
+                }
+            } else {
+                int coeff;
+                stringstream ss(term);
+                if (!(ss >> coeff && ss.eof())) {
+                    cout << term << " is not a valid term." << endl;
+                    return 1;
+                }
+                cout << " has pow " << 0 << " and coeff " << coeff;
+            }
+            cout << " " << term << endl;
         }
 
 
