@@ -80,6 +80,14 @@ int main(int argc, const char *argv[]) {
 
         for (vector<string>::const_iterator i = terms.begin(); i != terms.end(); ++i) {
             string term = *i;
+            if (term == "x") {
+                int pow = 1;
+                int coeff = 1;
+                cout << " has pow " << pow << " and coeff " << coeff;
+                powAndCoeff[pow] += coeff;
+                if (pow > degree) degree = pow;
+                continue;
+            }
 
             unsigned long positionOfX = term.find('x');
             bool hasX = positionOfX != string::npos;
@@ -147,6 +155,11 @@ int main(int argc, const char *argv[]) {
 
         int size = degree + 1;
         double *coeffs = new double[size];
+
+        for (int i = 0; i < size; ++i) {
+            coeffs[i] = 0;
+        }
+        
         for(auto elem : powAndCoeff)
         {
             int pow = elem.first;
