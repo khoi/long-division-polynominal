@@ -1,0 +1,3 @@
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/cmake-build-debug/CMakeFiles/long_division_polynominal.dir
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/cmake-build-debug/CMakeFiles/rebuild_cache.dir

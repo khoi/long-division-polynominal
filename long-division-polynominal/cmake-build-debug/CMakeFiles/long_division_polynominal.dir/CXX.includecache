@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/main.cpp
+polynomial.hpp
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.hpp
+iostream
+-
+sstream
+-
+cstring
+-
+vector
+-
+map
+-
+
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.cpp
+polynomial.hpp
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.hpp
+
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.hpp
+iostream
+-
+
