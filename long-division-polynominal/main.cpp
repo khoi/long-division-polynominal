@@ -12,10 +12,15 @@
 #include <cstring>
 #include <vector>
 #include <map>
+#include <cmath>
 
 #define DEBUG_MODE false
 
 using namespace std;
+
+bool strContainDot(const string &str) {
+    return str.find('.') != string::npos;
+}
 
 void replaceSubstr(std::string& str,
                const std::string& oldStr,
@@ -85,6 +90,11 @@ Polynomial* validateInput(const string &s) {
                         cout << term << " is not a valid term." << endl;
                         return nullptr;
                     }
+
+                    if (strContainDot(coeffString)) { // Only integer is accepted as coeff according to the spec :( 3.0 is not valid
+                        cout << term << " is not a valid term. Coeff can only be integer." << endl;
+                        return nullptr;
+                    }
                 }
 
 
@@ -110,6 +120,11 @@ Polynomial* validateInput(const string &s) {
                         cout << term << " is not a valid term." << endl;
                         return nullptr;
                     }
+
+                    if (strContainDot(coeffString)) {
+                        cout << term << " is not a valid term. Coeff can only be integer." << endl;
+                        return nullptr;
+                    }
                 }
 
                 if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
@@ -122,6 +137,11 @@ Polynomial* validateInput(const string &s) {
             stringstream ss(term);
             if (!(ss >> coeff && ss.eof())) {
                 cout << term << " is not a valid term." << endl;
+                return nullptr;
+            }
+
+            if (strContainDot(term)) {
+                cout << term << " is not a valid term. Coeff can only be integer." << endl;
                 return nullptr;
             }
             if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
@@ -195,24 +215,58 @@ int main(int argc, const char *argv[]) {
         auto dividend = *p1;
         auto divisor = *p2;
 
-        cout << dividend << endl;
-        cout << "/" << endl;
-        cout << divisor << endl;
-
         if (divisor.isZero()) {
             cout << "Divisor is not allowed to be 0";
             return  1;
         }
 
+        cout << "Method 1: Dynamic Array" << endl;
         if (dividend.isZero()) {
-            cout << Polynomial() << endl;
+            cout << "Quotient = " << 0 << endl;
+            cout << "Remainder = " << 0 << endl;
             return 0;
         }
 
         if (dividend.getDegree() < divisor.getDegree()) {
-            cout << dividend << endl;
+            cout << "Quotient = " << 0 << endl;
+            cout << "Remainder = " << dividend << endl;
             return 0;
         }
+
+        Polynomial abc = dividend - divisor;
+        cout << abc.getDegree() << endl;
+        cout << abc << endl;
+
+        return 0;
+
+        Polynomial q = Polynomial();
+        Polynomial r = Polynomial(dividend);
+
+        while (!r.isZero() && r.getDegree() >= divisor.getDegree()) {
+            int tmpSize = r.getDegree() - divisor.getDegree() + 1;
+            auto *tmpCoeffs = new double[tmpSize];
+            tmpCoeffs[0] = r.getCoeffs()[0] / divisor.getCoeffs()[0];
+            for (int i = 1; i < tmpSize; ++i) {
+                tmpCoeffs[i] = 0;
+            }
+            Polynomial t(tmpCoeffs, tmpSize);
+
+            cout << "@@@@@@" << endl;
+            cout << t << endl;
+            cout << "@@@@@@" << endl;
+
+            q += t;
+
+            Polynomial minus = t * divisor;
+            cout << "t * divisor" << minus << endl;
+            r -= minus;
+
+            cout << "Quotient = " << q << endl;
+            cout << "Remainder = " << r << endl;
+        }
+
+//        cout << "Quotient = " << q << endl;
+//        cout << "Remainder = " << r << endl;
     }
 
     return 0;
