@@ -13,7 +13,7 @@
 #include <vector>
 #include <map>
 
-#define DEBUG_MODE true
+#define DEBUG_MODE false
 
 using namespace std;
 
