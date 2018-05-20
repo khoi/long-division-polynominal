@@ -44,6 +44,111 @@ vector<string> split(const string& str, const string& delim)
     return tokens;
 }
 
+Polynomial* validateInput(const string &s) {
+    string input(s);
+    string delim = "+";
+    int degree = INT_MIN;
+    replaceSubstr(input, "-", "+-");
+    vector<string> terms = split(input, delim);
+    map<int, double> powAndCoeff;
+    for (vector<string>::const_iterator i = terms.begin(); i != terms.end(); ++i) {
+        string term = *i;
+        unsigned long positionOfX = term.find('x');
+        bool hasX = positionOfX != string::npos;
+
+        if (hasX) {
+            unsigned long positionOfPowChar = term.find('^');
+            bool hasPow = positionOfPowChar != string::npos;
+            if (hasPow) {
+                string powString = term.substr(positionOfPowChar + 1);
+                stringstream ss1(powString);
+                int pow;
+                double coeff;
+                if (!(ss1 >> pow && ss1.eof())) {
+                    cout << term << " is not a valid term." << endl;
+                    return nullptr;
+                }
+
+                string coeffString = term.substr(0, positionOfX);
+
+                if (coeffString.length() == 0) {
+                    coeff = 1.0;
+                } else if (coeffString == "-") {
+                    coeff = -1.0;
+                } else {
+                    stringstream ss2(coeffString);
+                    bool coeffConversionFail = (ss2 >> coeff).fail();
+                    string remainString;
+                    getline(ss2, remainString);
+
+                    if (coeffConversionFail || remainString != "*") {
+                        cout << term << " is not a valid term." << endl;
+                        return nullptr;
+                    }
+                }
+
+
+                if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
+                powAndCoeff[pow] += coeff;
+                if (pow > degree) degree = pow;
+            } else { // Having pow == 1. For instance: -3*x or just x
+                int pow = 1;
+                double coeff = 0;
+                string coeffString = term.substr(0, positionOfX);
+
+                if (coeffString.length() == 0) { // the term is only x
+                    coeff = 1.0;
+                } else if (coeffString == "-") { // The term is only -x
+                    coeff = -1.0;
+                } else {
+                    stringstream ss(coeffString);
+                    int coeffConversionFail = (ss >> coeff).fail();
+                    string remainString;
+                    getline(ss, remainString);
+
+                    if (coeffConversionFail || remainString != "*") {
+                        cout << term << " is not a valid term." << endl;
+                        return nullptr;
+                    }
+                }
+
+                if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
+                powAndCoeff[pow] += coeff;
+                if (pow > degree) degree = pow;
+            }
+        } else {
+            double coeff;
+            int pow = 0;
+            stringstream ss(term);
+            if (!(ss >> coeff && ss.eof())) {
+                cout << term << " is not a valid term." << endl;
+                return nullptr;
+            }
+            if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
+            powAndCoeff[pow] += coeff;
+            if (pow > degree) degree = pow;
+        }
+        if (DEBUG_MODE) cout << " " << term << endl;
+    }
+
+    int size = degree + 1;
+    auto *coeffs = new double[size];
+
+    for (int i = 0; i < size; ++i) {
+        coeffs[i] = 0;
+    }
+
+    for(auto elem : powAndCoeff)
+    {
+        int pow = elem.first;
+        double coeff = elem.second;
+        coeffs[degree - pow] = coeff;
+    }
+
+
+    return new Polynomial(coeffs, size);
+}
+
 int main(int argc, const char *argv[]) {
     if (argc == 1) {
         cout << "Please pass 0 or 1 as the program argument" << endl;
@@ -71,111 +176,24 @@ int main(int argc, const char *argv[]) {
     }
 
     if (isInNormalMode) {
-        cout << "Enter dividend: ";
         string dividend;
-        string delim = "+";
-        int degree = INT_MIN;
+        string divisor;
+
+        cout << "Enter dividend: ";
         cin >> dividend;
-        replaceSubstr(dividend, "-", "+-");
-        vector<string> terms = split(dividend, delim);
-        map<int, double> powAndCoeff;
 
-        for (vector<string>::const_iterator i = terms.begin(); i != terms.end(); ++i) {
-            string term = *i;
-            unsigned long positionOfX = term.find('x');
-            bool hasX = positionOfX != string::npos;
+        cout << "Enter divisor: ";
+        cin >> divisor;
 
-            if (hasX) {
-                unsigned long positionOfPowChar = term.find('^');
-                bool hasPow = positionOfPowChar != string::npos;
-                if (hasPow) {
-                    string powString = term.substr(positionOfPowChar + 1);
-                    stringstream ss1(powString);
-                    int pow;
-                    double coeff;
-                    if (!(ss1 >> pow && ss1.eof())) {
-                        cout << term << " is not a valid term." << endl;
-                        return 1;
-                    }
+        auto p1 = validateInput(dividend);
+        auto p2 = validateInput(divisor);
 
-                    string coeffString = term.substr(0, positionOfX);
-
-                    if (coeffString.length() == 0) {
-                        coeff = 1.0;
-                    } else if (coeffString == "-") {
-                        coeff = -1.0;
-                    } else {
-                        stringstream ss2(coeffString);
-                        bool coeffConversionFail = (ss2 >> coeff).fail();
-                        string remainString;
-                        getline(ss2, remainString);
-
-                        if (coeffConversionFail || remainString != "*") {
-                            cout << term << " is not a valid term." << endl;
-                            return 1;
-                        }
-                    }
-
-
-                    if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
-                    powAndCoeff[pow] += coeff;
-                    if (pow > degree) degree = pow;
-                } else { // Having pow == 1. For instance: -3*x or just x
-                    int pow = 1;
-                    double coeff = 0;
-                    string coeffString = term.substr(0, positionOfX);
-
-                    if (coeffString.length() == 0) { // the term is only x
-                        coeff = 1.0;
-                    } else if (coeffString == "-") { // The term is only -x
-                        coeff = -1.0;
-                    } else {
-                        stringstream ss(coeffString);
-                        int coeffConversionFail = (ss >> coeff).fail();
-                        string remainString;
-                        getline(ss, remainString);
-
-                        if (coeffConversionFail || remainString != "*") {
-                            cout << term << " is not a valid term." << endl;
-                            return 1;
-                        }
-                    }
-
-                    if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
-                    powAndCoeff[pow] += coeff;
-                    if (pow > degree) degree = pow;
-                }
-            } else {
-                double coeff;
-                int pow = 0;
-                stringstream ss(term);
-                if (!(ss >> coeff && ss.eof())) {
-                    cout << term << " is not a valid term." << endl;
-                    return 1;
-                }
-                if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
-                powAndCoeff[pow] += coeff;
-                if (pow > degree) degree = pow;
-            }
-            if (DEBUG_MODE) cout << " " << term << endl;
+        if (p1 == nullptr || p2 == nullptr) {
+            return 1;
         }
 
-        int size = degree + 1;
-        auto *coeffs = new double[size];
-
-        for (int i = 0; i < size; ++i) {
-            coeffs[i] = 0;
-        }
-        
-        for(auto elem : powAndCoeff)
-        {
-            int pow = elem.first;
-            double coeff = elem.second;
-            coeffs[degree - pow] = coeff;
-        }
-
-        Polynomial p1(coeffs, size);
-        cout << p1 << endl;
+        cout << *p1 << endl;
+        cout << *p2 << endl;
     }
 
     return 1;
