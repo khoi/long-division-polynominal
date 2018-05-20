@@ -15,6 +15,7 @@ public:
     Polynomial(const Polynomial& p);
     ~Polynomial();
     int getDegree() const;
+    double* getCoeffs() const;
     bool isZero() const;
 
     Polynomial& operator+=(const Polynomial& rhs);

@@ -233,12 +233,6 @@ int main(int argc, const char *argv[]) {
             return 0;
         }
 
-        Polynomial abc = dividend - divisor;
-        cout << abc.getDegree() << endl;
-        cout << abc << endl;
-
-        return 0;
-
         Polynomial q = Polynomial();
         Polynomial r = Polynomial(dividend);
 
@@ -251,22 +245,12 @@ int main(int argc, const char *argv[]) {
             }
             Polynomial t(tmpCoeffs, tmpSize);
 
-            cout << "@@@@@@" << endl;
-            cout << t << endl;
-            cout << "@@@@@@" << endl;
-
             q += t;
-
-            Polynomial minus = t * divisor;
-            cout << "t * divisor" << minus << endl;
-            r -= minus;
-
-            cout << "Quotient = " << q << endl;
-            cout << "Remainder = " << r << endl;
+            r -= t * divisor;
         }
 
-//        cout << "Quotient = " << q << endl;
-//        cout << "Remainder = " << r << endl;
+        cout << "Quotient = " << q << endl;
+        cout << "Remainder = " << r << endl;
     }
 
     return 0;

@@ -32,6 +32,8 @@ Polynomial::Polynomial(const Polynomial &p) {
 
 int Polynomial::getDegree() const { return size - 1; }
 
+double* Polynomial::getCoeffs() const { return coeffs; }
+
 bool Polynomial::isZero() const {
     return getDegree() == 0 && coeffs[0] == 0;
 };
@@ -63,20 +65,34 @@ Polynomial &Polynomial::operator+=(const Polynomial &rhs) {
 }
 
 Polynomial &Polynomial::operator-=(const Polynomial &rhs) {
-    int newSize = std::max(size, rhs.size);
-    double *newCoeffs = new double[newSize];
+    int tmpSize = std::max(size, rhs.size);
+    double *tmpCoeffs = new double[tmpSize];
 
-    for (int i = newSize - 1; i >= 0; --i) {
-        newCoeffs[i] = 0;
-        int pow = newSize - i - 1;
+    for (int i = tmpSize - 1; i >= 0; --i) {
+        tmpCoeffs[i] = 0;
+        int pow = tmpSize - i - 1;
 
         int lhsIdx = getDegree() - pow;
         int rhsIdx = rhs.getDegree() - pow;
 
         if (lhsIdx >= 0)
-            newCoeffs[i] += coeffs[lhsIdx];
+            tmpCoeffs[i] += coeffs[lhsIdx];
         if (rhsIdx >= 0)
-            newCoeffs[i] -= rhs.coeffs[rhsIdx];
+            tmpCoeffs[i] -= rhs.coeffs[rhsIdx];
+    }
+
+    int idx = 0;
+
+    while (idx < tmpSize - 1) { // Left truncating coeffs = 0
+        if (tmpCoeffs[idx] != 0) break;
+        ++idx;
+    }
+
+    int newSize = tmpSize - idx;
+    auto newCoeffs = new double[newSize];
+
+    for (int i = 0; i < newSize; ++i) {
+        newCoeffs[i] = tmpCoeffs[i + idx];
     }
 
     delete[] coeffs;
@@ -190,6 +206,10 @@ bool operator==(const Polynomial &lhs, const Polynomial &rhs) {
 }
 
 std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
+    if (p.size == 1) {
+        return os << p.coeffs[0];
+    }
+
     for (int i = 0; i < p.size; ++i) {
         double coeff = p.coeffs[i];
         int pow = p.getDegree() - i;
