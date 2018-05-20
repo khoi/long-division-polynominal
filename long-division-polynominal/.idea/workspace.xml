@@ -32,32 +32,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.cpp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="206" column="17" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="17" />
-              <folding>
-                <element signature="e#141#166#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-102">
+              <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="polynomial.hpp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/polynomial.hpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="polynomial.cpp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="polynomial.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polynomial.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="212" selection-start-line="212" selection-end-line="212" />
+            <state relative-caret-position="185">
+              <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -75,8 +63,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/polynomial.hpp" />
-        <option value="$PROJECT_DIR$/polynomial.cpp" />
         <option value="$PROJECT_DIR$/main.cpp" />
+        <option value="$PROJECT_DIR$/polynomial.cpp" />
       </list>
     </option>
   </component>
@@ -158,20 +146,20 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7985000" />
+    <option name="totallyTimeSpent" value="8199000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1015" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Messages" order="7" />
       <window_info anchor="bottom" id="CMake" order="7" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -228,9 +216,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1938">
           <caret line="114" column="63" lean-forward="true" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
-          <folding>
-            <element signature="e#141#166#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -245,9 +230,118 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1632">
           <caret line="96" column="21" lean-forward="true" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
-          <folding>
-            <element signature="e#141#166#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polynomial_array.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="16" column="12" lean-forward="true" selection-start-line="16" selection-start-column="12" selection-end-line="16" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="237" selection-start-line="237" selection-end-line="237" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polynomial_array.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="80" column="22" lean-forward="true" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1938">
+          <caret line="114" column="63" lean-forward="true" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="96" column="21" lean-forward="true" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Polynomial.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polynomial_array.hpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1938">
+          <caret line="114" column="63" lean-forward="true" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1632">
+          <caret line="96" column="21" lean-forward="true" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -269,9 +363,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="237" selection-start-line="237" selection-end-line="237" />
-          <folding>
-            <element signature="e#141#166#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -293,9 +384,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1938">
           <caret line="114" column="63" lean-forward="true" selection-start-line="114" selection-start-column="63" selection-end-line="114" selection-end-column="63" />
-          <folding>
-            <element signature="e#141#166#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -310,9 +398,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1632">
           <caret line="96" column="21" lean-forward="true" selection-start-line="96" selection-start-column="21" selection-end-line="96" selection-end-column="21" />
-          <folding>
-            <element signature="e#141#166#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -323,13 +408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/polynomial.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="212" selection-start-line="212" selection-end-line="212" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/polynomial.hpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="76">
@@ -337,13 +415,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/polynomial_array.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="206" column="17" selection-start-line="206" selection-start-column="17" selection-end-line="206" selection-end-column="17" />
-          <folding>
-            <element signature="e#141#166#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-102">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/polynomial.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
         </state>
       </provider>
     </entry>

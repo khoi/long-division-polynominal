@@ -88,6 +88,9 @@
 		<Unit filename="C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.cpp">
 			<Option target="long_division_polynominal"/>
 		</Unit>
+		<Unit filename="C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.h">
+			<Option target="long_division_polynominal"/>
+		</Unit>
 		<Unit filename="C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.hpp">
 			<Option target="long_division_polynominal"/>
 		</Unit>

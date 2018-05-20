@@ -42,7 +42,7 @@ Polynomial::~Polynomial() { delete[] coeffs; }
 
 Polynomial &Polynomial::operator+=(const Polynomial &rhs) {
     int newSize = std::max(size, rhs.size);
-    double *newCoeffs = new double[newSize];
+    auto *newCoeffs = new double[newSize];
 
     for (int i = newSize - 1; i >= 0; --i) {
         newCoeffs[i] = 0;
@@ -66,7 +66,7 @@ Polynomial &Polynomial::operator+=(const Polynomial &rhs) {
 
 Polynomial &Polynomial::operator-=(const Polynomial &rhs) {
     int tmpSize = std::max(size, rhs.size);
-    double *tmpCoeffs = new double[tmpSize];
+    auto *tmpCoeffs = new double[tmpSize];
 
     for (int i = tmpSize - 1; i >= 0; --i) {
         tmpCoeffs[i] = 0;
@@ -102,8 +102,7 @@ Polynomial &Polynomial::operator-=(const Polynomial &rhs) {
 }
 
 Polynomial &Polynomial::operator*=(const Polynomial &rhs) {
-    if ((getDegree() == 0 && coeffs[0] == 0) ||
-        (rhs.getDegree() == 0 && rhs.coeffs[0] == 0)) {
+    if (isZero() || rhs.isZero()) {
         size = 1;
         coeffs = new double[size];
         coeffs[0] = 0;
@@ -111,7 +110,7 @@ Polynomial &Polynomial::operator*=(const Polynomial &rhs) {
     }
 
     int newSize = getDegree() + rhs.getDegree() + 1;
-    double *newCoeffs = new double[newSize];
+    auto *newCoeffs = new double[newSize];
 
     for (int i = newSize - 1; i >= 0; --i) {
         newCoeffs[i] = 0;
@@ -133,15 +132,14 @@ Polynomial &Polynomial::operator*=(const Polynomial &rhs) {
 }
 
 Polynomial &Polynomial::operator*=(double val) {
-    if ((getDegree() == 0 && coeffs[0] == 0) ||
-        (val == 0.0)) {
+    if (isZero() || val == 0.0) {
         size = 1;
         coeffs = new double[size];
         coeffs[0] = 0;
         return *this;
     }
 
-    double *newCoeffs = new double[size];
+    auto *newCoeffs = new double[size];
 
     for (int i = size - 1; i >= 0; --i) {
         newCoeffs[i] = coeffs[i] * val;
@@ -153,7 +151,7 @@ Polynomial &Polynomial::operator*=(double val) {
 }
 
 Polynomial &Polynomial::operator/=(double val) {
-    double *newCoeffs = new double[size];
+    auto *newCoeffs = new double[size];
 
     for (int i = size - 1; i >= 0; --i) {
         newCoeffs[i] = coeffs[i] / val;
