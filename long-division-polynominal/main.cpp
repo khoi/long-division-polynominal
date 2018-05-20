@@ -176,25 +176,44 @@ int main(int argc, const char *argv[]) {
     }
 
     if (isInNormalMode) {
-        string dividend;
-        string divisor;
+        string a;
+        string b;
 
         cout << "Enter dividend: ";
-        cin >> dividend;
+        cin >> a;
 
         cout << "Enter divisor: ";
-        cin >> divisor;
+        cin >> b;
 
-        auto p1 = validateInput(dividend);
-        auto p2 = validateInput(divisor);
+        auto p1 = validateInput(a);
+        auto p2 = validateInput(b);
 
         if (p1 == nullptr || p2 == nullptr) {
             return 1;
         }
 
-        cout << *p1 << endl;
-        cout << *p2 << endl;
+        auto dividend = *p1;
+        auto divisor = *p2;
+
+        cout << dividend << endl;
+        cout << "/" << endl;
+        cout << divisor << endl;
+
+        if (divisor.isZero()) {
+            cout << "Divisor is not allowed to be 0";
+            return  1;
+        }
+
+        if (dividend.isZero()) {
+            cout << Polynomial() << endl;
+            return 0;
+        }
+
+        if (dividend.getDegree() < divisor.getDegree()) {
+            cout << dividend << endl;
+            return 0;
+        }
     }
 
-    return 1;
+    return 0;
 }

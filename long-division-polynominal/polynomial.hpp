@@ -15,12 +15,12 @@ public:
     Polynomial(const Polynomial& p);
     ~Polynomial();
     int getDegree() const;
+    bool isZero() const;
 
     Polynomial& operator+=(const Polynomial& rhs);
     Polynomial& operator-=(const Polynomial& rhs);
     Polynomial& operator*=(const Polynomial& rhs);
     Polynomial& operator*=(double val);
-    Polynomial& operator/=(const Polynomial& rhs);
     Polynomial& operator/=(double val);
 
 

@@ -32,6 +32,10 @@ Polynomial::Polynomial(const Polynomial &p) {
 
 int Polynomial::getDegree() const { return size - 1; }
 
+bool Polynomial::isZero() const {
+    return getDegree() == 0 && coeffs[0] == 0;
+};
+
 Polynomial::~Polynomial() { delete[] coeffs; }
 
 Polynomial &Polynomial::operator+=(const Polynomial &rhs) {
