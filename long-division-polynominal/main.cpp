@@ -13,6 +13,8 @@
 #include <vector>
 #include <map>
 
+#define DEBUG_MODE true
+
 using namespace std;
 
 void replaceSubstr(std::string& str,
@@ -115,7 +117,7 @@ int main(int argc, const char *argv[]) {
                     }
 
 
-                    cout << " has pow " << pow << " and coeff " << coeff;
+                    if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
                     powAndCoeff[pow] += coeff;
                     if (pow > degree) degree = pow;
                 } else { // Having pow == 1. For instance: -3*x or just x
@@ -139,7 +141,7 @@ int main(int argc, const char *argv[]) {
                         }
                     }
 
-                    cout << " has pow " << pow << " and coeff " << coeff;
+                    if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
                     powAndCoeff[pow] += coeff;
                     if (pow > degree) degree = pow;
                 }
@@ -151,11 +153,11 @@ int main(int argc, const char *argv[]) {
                     cout << term << " is not a valid term." << endl;
                     return 1;
                 }
-                cout << " has pow " << pow << " and coeff " << coeff;
+                if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
                 powAndCoeff[pow] += coeff;
                 if (pow > degree) degree = pow;
             }
-            cout << " " << term << endl;
+            if (DEBUG_MODE) cout << " " << term << endl;
         }
 
         int size = degree + 1;
