@@ -97,34 +97,48 @@ int main(int argc, const char *argv[]) {
                     }
 
                     string coeffString = term.substr(0, positionOfX);
-                    stringstream ss2(coeffString);
-                    bool coeffConversionFail = (ss2 >> coeff).fail();
-                    string remainString;
-                    getline(ss2, remainString);
 
-                    if (coeffString.length() == 0) { // case where coeff = 1. For instance: x^3
-                        coeff = 1;
+                    if (coeffString.length() == 0) {
+                        coeff = 1.0;
+                    } else if (coeffString == "-") {
+                        coeff = -1.0;
+                    } else {
+                        stringstream ss2(coeffString);
+                        bool coeffConversionFail = (ss2 >> coeff).fail();
+                        string remainString;
+                        getline(ss2, remainString);
+
+                        if (coeffConversionFail || remainString != "*") {
+                            cout << term << " is not a valid term." << endl;
+                            return 1;
+                        }
                     }
-                    else if (coeffConversionFail || remainString != "*") {
-                        cout << term << " is not a valid term." << endl;
-                        return 1;
-                    }
+
+
                     cout << " has pow " << pow << " and coeff " << coeff;
                     powAndCoeff[pow] += coeff;
                     if (pow > degree) degree = pow;
-                } else { // Having pow == 1. For instance: -3*x
+                } else { // Having pow == 1. For instance: -3*x or just x
                     int pow = 1;
                     double coeff = 0;
                     string coeffString = term.substr(0, positionOfX);
-                    stringstream ss(coeffString);
-                    int coeffConversionFail = (ss >> coeff).fail();
-                    string remainString;
-                    getline(ss, remainString);
 
-                    if (coeffConversionFail || remainString != "*") {
-                        cout << term << " is not a valid term." << endl;
-                        return 1;
+                    if (coeffString.length() == 0) { // the term is only x
+                        coeff = 1.0;
+                    } else if (coeffString == "-") { // The term is only -x
+                        coeff = -1.0;
+                    } else {
+                        stringstream ss(coeffString);
+                        int coeffConversionFail = (ss >> coeff).fail();
+                        string remainString;
+                        getline(ss, remainString);
+
+                        if (coeffConversionFail || remainString != "*") {
+                            cout << term << " is not a valid term." << endl;
+                            return 1;
+                        }
                     }
+
                     cout << " has pow " << pow << " and coeff " << coeff;
                     powAndCoeff[pow] += coeff;
                     if (pow > degree) degree = pow;
