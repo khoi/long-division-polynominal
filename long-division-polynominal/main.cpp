@@ -201,11 +201,10 @@ int main(int argc, const char *argv[]) {
 
         cout << "Enter dividend: ";
         cin >> a;
+        auto p1 = validateInput(a);
 
         cout << "Enter divisor: ";
         cin >> b;
-
-        auto p1 = validateInput(a);
         auto p2 = validateInput(b);
 
         if (p1 == nullptr || p2 == nullptr) {
