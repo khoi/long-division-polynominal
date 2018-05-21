@@ -97,7 +97,10 @@ Polynomial* validateInput(const string &s) {
                     }
                 }
 
-
+                if (coeff == 0) {
+                    cout << "Coeff can't be zero." << endl;
+                    return nullptr;
+                }
                 if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
                 powAndCoeff[pow] += coeff;
                 if (pow > degree) degree = pow;
@@ -127,6 +130,11 @@ Polynomial* validateInput(const string &s) {
                     }
                 }
 
+                if (coeff == 0) {
+                    cout << "Coeff can't be zero." << endl;
+                    return nullptr;
+                }
+
                 if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
                 powAndCoeff[pow] += coeff;
                 if (pow > degree) degree = pow;
@@ -144,6 +152,12 @@ Polynomial* validateInput(const string &s) {
                 cout << term << " is not a valid term. Coeff can only be integer." << endl;
                 return nullptr;
             }
+
+            if (coeff == 0) {
+                cout << "Coeff can't be zero." << endl;
+                return nullptr;
+            }
+
             if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
             powAndCoeff[pow] += coeff;
             if (pow > degree) degree = pow;
@@ -203,11 +217,15 @@ int main(int argc, const char *argv[]) {
         cin >> a;
         auto p1 = validateInput(a);
 
+        if (p1 == nullptr) {
+            return 1;
+        }
+
         cout << "Enter divisor: ";
         cin >> b;
         auto p2 = validateInput(b);
 
-        if (p1 == nullptr || p2 == nullptr) {
+        if (p2 == nullptr) {
             return 1;
         }
 
@@ -215,7 +233,7 @@ int main(int argc, const char *argv[]) {
         auto divisor = *p2;
 
         if (divisor.isZero()) {
-            cout << "Divisor is not allowed to be 0";
+            cout << "Divisor is not allowed to be 0" << endl;
             return  1;
         }
 
