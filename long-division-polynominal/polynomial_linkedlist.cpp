@@ -22,6 +22,29 @@ PolynomialLL::~PolynomialLL() {
     }
 }
 
+PolynomialLL::PolynomialLL(const PolynomialLL &p) {
+    Term *current = p.head;
+    Term *copy = new Term();
+    copy->coeff = current->coeff;
+    copy->pow = current->pow;
+    copy->next = nullptr;
+    Term *head = copy;
+
+    current = current->next;
+    while (current) {
+        Term *t = new Term();
+        t->coeff = current->coeff;
+        t->pow = current->pow;
+        copy->next = t;
+        copy = copy->next;
+        copy->next = nullptr;
+        current = current->next;
+    }
+
+    this->head = head;
+    this->length = p.length;
+}
+
 void PolynomialLL::add(int coeff, int pow) {
     Term *t = new Term();
     t->coeff = coeff;

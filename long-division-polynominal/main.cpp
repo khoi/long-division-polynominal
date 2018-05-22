@@ -281,7 +281,9 @@ int main(int argc, const char *argv[]) {
         cout << "Remainder = " << r << endl;
 
         /*Method 2*/
-        cout << *p1.p_ll << endl;
+
+        PolynomialLL pasdf = PolynomialLL(*p1.p_ll);
+        cout << pasdf << endl;
     }
 
     return 0;
