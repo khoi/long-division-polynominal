@@ -6,6 +6,7 @@
 //  Copyright © 2018 Khoi Lai. All rights reserved.
 //
 #include <iostream>
+
 class PolynomialLL {
     struct Term {
         int coeff;

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7C0C120420A4523C00B29B79 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C0C120320A4523C00B29B79 /* main.cpp */; };
 		7C0C120F20A45A0B00B29B79 /* polynomial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C0C120D20A45A0B00B29B79 /* polynomial.cpp */; };
+		7CAD786D20B437F300E4D96C /* polynomial_linkedlist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7CAD786C20B437F300E4D96C /* polynomial_linkedlist.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		7C0C120320A4523C00B29B79 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		7C0C120D20A45A0B00B29B79 /* polynomial.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = polynomial.cpp; sourceTree = "<group>"; };
 		7C0C120E20A45A0B00B29B79 /* polynomial.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = polynomial.hpp; sourceTree = "<group>"; };
+		7CAD786B20B437F300E4D96C /* polynomial_linkedlist.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = polynomial_linkedlist.hpp; sourceTree = "<group>"; };
+		7CAD786C20B437F300E4D96C /* polynomial_linkedlist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = polynomial_linkedlist.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				7C0C120320A4523C00B29B79 /* main.cpp */,
 				7C0C120D20A45A0B00B29B79 /* polynomial.cpp */,
 				7C0C120E20A45A0B00B29B79 /* polynomial.hpp */,
+				7CAD786C20B437F300E4D96C /* polynomial_linkedlist.cpp */,
+				7CAD786B20B437F300E4D96C /* polynomial_linkedlist.hpp */,
 			);
 			path = "long-division-polynominal";
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CAD786D20B437F300E4D96C /* polynomial_linkedlist.cpp in Sources */,
 				7C0C120420A4523C00B29B79 /* main.cpp in Sources */,
 				7C0C120F20A45A0B00B29B79 /* polynomial.cpp in Sources */,
 			);
