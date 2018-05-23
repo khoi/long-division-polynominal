@@ -77,15 +77,16 @@ PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
         newTerm->next = t;
         newTerm = newTerm->next;
         newTerm->next = nullptr;
+
         current = current->next;
     }
 
 
     current = rhs.head; // Iterate through the rhs and add it
-    auto *node = headNewTerm;
 
     while (current) {
         bool powExist = false;
+        auto *node = headNewTerm;
         while (node) {
             if(current->pow == node->pow) {
                 node->coeff += current->coeff;
@@ -107,4 +108,5 @@ PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
 
 
     this->head = headNewTerm;
+    return *this;
 }
