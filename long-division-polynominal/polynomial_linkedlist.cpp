@@ -11,7 +11,7 @@
 #include <map>
 
 PolynomialLL::PolynomialLL() {
-    head = NULL;
+    head = nullptr;
     length = 0;
 }
 
@@ -26,7 +26,7 @@ PolynomialLL::~PolynomialLL() {
 
 PolynomialLL::PolynomialLL(const PolynomialLL &p) {
     Term *current = p.head;
-    Term *copy = new Term();
+    auto *copy = new Term();
     copy->coeff = current->coeff;
     copy->pow = current->pow;
     copy->next = nullptr;
@@ -34,7 +34,7 @@ PolynomialLL::PolynomialLL(const PolynomialLL &p) {
 
     current = current->next;
     while (current) {
-        Term *t = new Term();
+        auto *t = new Term();
         t->coeff = current->coeff;
         t->pow = current->pow;
         copy->next = t;
@@ -48,7 +48,7 @@ PolynomialLL::PolynomialLL(const PolynomialLL &p) {
 }
 
 void PolynomialLL::add(double coeff, int pow) {
-    Term *t = new Term();
+    auto *t = new Term();
     t->coeff = coeff;
     t->pow = pow;
     t->next = head;
@@ -131,11 +131,11 @@ PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
 
     this->length = powAndCoeffs.size();
     if (powAndCoeffs.empty()) {
-        this->head = NULL;
+        this->head = nullptr;
     }
     else {
         auto currentIterator = powAndCoeffs.begin();
-        Term *node = new Term();
+        auto *node = new Term();
 
         node->coeff = currentIterator->second;
         node->pow = currentIterator->first;
@@ -146,7 +146,7 @@ PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
 
         for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
             if (it->second == 0) { continue; }
-            Term *t = new Term();
+            auto *t = new Term();
             t->pow = it->first;
             t->coeff = it->second;
             t->next = nullptr;
@@ -196,11 +196,11 @@ PolynomialLL &PolynomialLL::operator-=(const PolynomialLL &rhs) {
 
     this->length = powAndCoeffs.size();
     if (powAndCoeffs.empty()) {
-        this->head = NULL;
+        this->head = nullptr;
     }
     else {
         auto currentIterator = powAndCoeffs.begin();
-        Term *node = new Term();
+        auto *node = new Term();
 
         node->coeff = currentIterator->second;
         node->pow = currentIterator->first;
@@ -211,7 +211,7 @@ PolynomialLL &PolynomialLL::operator-=(const PolynomialLL &rhs) {
 
         for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
             if (it->second == 0) { continue; }
-            Term *t = new Term();
+            auto *t = new Term();
             t->pow = it->first;
             t->coeff = it->second;
             t->next = nullptr;
@@ -255,11 +255,11 @@ PolynomialLL &PolynomialLL::operator*=(const PolynomialLL &rhs) {
 
     this->length = powAndCoeffs.size();
     if (powAndCoeffs.empty()) {
-        this->head = NULL;
+        this->head = nullptr;
     }
     else {
         auto currentIterator = powAndCoeffs.begin();
-        Term *node = new Term();
+        auto *node = new Term();
 
         node->coeff = currentIterator->second;
         node->pow = currentIterator->first;
@@ -270,7 +270,7 @@ PolynomialLL &PolynomialLL::operator*=(const PolynomialLL &rhs) {
 
         for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
             if (it->second == 0) { continue; }
-            Term *t = new Term();
+            auto *t = new Term();
             t->pow = it->first;
             t->coeff = it->second;
             t->next = nullptr;
@@ -286,10 +286,6 @@ PolynomialLL &PolynomialLL::operator*=(const PolynomialLL &rhs) {
 
 bool PolynomialLL::isZero() const {
     return head == nullptr;
-}
-
-int PolynomialLL::getLength() const {
-    return length;
 }
 
 int PolynomialLL::getDegree() const {

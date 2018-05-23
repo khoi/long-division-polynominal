@@ -19,7 +19,6 @@ public:
     ~PolynomialLL();
     void add(double coeff, int pow);
     int getDegree() const;
-    int getLength() const;
     bool isZero() const;
     double getCoeff(int degree);
 
