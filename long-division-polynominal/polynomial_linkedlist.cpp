@@ -54,6 +54,9 @@ void PolynomialLL::add(double coeff, int pow) {
 }
 
 std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
+    if (p.isZero()) {
+        return os << 0;
+    }
     auto node = p.head;
     while (node) {
         os << "coeff: " << node->coeff << " pow: " << node->pow << std::endl;
@@ -87,25 +90,138 @@ PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
         current = current->next;
     }
 
-    auto currentIterator = powAndCoeffs.begin();
-    Term *node = new Term();
-    node->pow = currentIterator->first;
-    node->coeff = currentIterator->second;
-    node->next = nullptr;
-    auto newHead = node;
-
-    ++currentIterator;
-
-    for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
-        Term *t = new Term();
-        t->pow = it->first;
-        t->coeff = it->second;
-        t->next = nullptr;
-
-        node->next = t;
-        node = t;
+    for (auto it = powAndCoeffs.cbegin(); it != powAndCoeffs.cend();) { // Remove value where coeff = 0
+        if ((*it).second == 0) {
+            powAndCoeffs.erase(it++);
+        }
+        else {
+            ++it;
+        }
     }
 
-    this->head = newHead;
+    if (powAndCoeffs.empty()) {
+        this->head = NULL;
+    }
+    else {
+        auto currentIterator = powAndCoeffs.begin();
+        Term *node = new Term();
+
+        node->coeff = currentIterator->second;
+        node->pow = currentIterator->first;
+        node->next = nullptr;
+
+        auto newHead = node;
+        ++currentIterator;
+
+        for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
+            if (it->second == 0) { continue; }
+            Term *t = new Term();
+            t->pow = it->first;
+            t->coeff = it->second;
+            t->next = nullptr;
+            node->next = t;
+            node = t;
+        }
+        this->head = newHead;
+    }
+
+
     return *this;
+}
+
+PolynomialLL &PolynomialLL::operator-=(const PolynomialLL &rhs) {
+    std::map<int, double, std::greater<int>> powAndCoeffs;
+
+    Term *current = head;
+    while (current) {
+        if (powAndCoeffs[current->pow]) {
+            powAndCoeffs[current->pow] += current->coeff;
+        } else {
+            powAndCoeffs[current->pow] = current->coeff;
+        }
+        auto deleteMe = current;
+        current = current->next;
+        delete deleteMe;
+    }
+
+    current = rhs.head; // Iterate through the rhs and add it
+    while (current) {
+        if (powAndCoeffs[current->pow]) {
+            powAndCoeffs[current->pow] -= current->coeff;
+        } else {
+            powAndCoeffs[current->pow] = current->coeff;
+        }
+        current = current->next;
+    }
+
+    for (auto it = powAndCoeffs.cbegin(); it != powAndCoeffs.cend();) { // Remove value where coeff = 0
+        if ((*it).second == 0) {
+            powAndCoeffs.erase(it++);
+        }
+        else {
+            ++it;
+        }
+    }
+
+    if (powAndCoeffs.empty()) {
+        this->head = NULL;
+    }
+    else {
+        auto currentIterator = powAndCoeffs.begin();
+        Term *node = new Term();
+
+        node->coeff = currentIterator->second;
+        node->pow = currentIterator->first;
+        node->next = nullptr;
+
+        auto newHead = node;
+        ++currentIterator;
+
+        for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
+            if (it->second == 0) { continue; }
+            Term *t = new Term();
+            t->pow = it->first;
+            t->coeff = it->second;
+            t->next = nullptr;
+            node->next = t;
+            node = t;
+        }
+        this->head = newHead;
+    }
+
+
+    return *this;
+}
+
+PolynomialLL &PolynomialLL::operator*=(const PolynomialLL &rhs) {
+    std::map<int, double, std::greater<int>> powAndCoeffs;
+    std::map<int, double, std::greater<int>> powAndCoeffsRhs;
+
+    Term *current = head;
+    while (current) {
+        if (powAndCoeffs[current->pow]) {
+            powAndCoeffs[current->pow] += current->coeff;
+        } else {
+            powAndCoeffs[current->pow] = current->coeff;
+        }
+        auto deleteMe = current;
+        current = current->next;
+        delete deleteMe;
+    }
+
+    current = rhs.head;
+    while (current) {
+        if (powAndCoeffsRhs[current->pow]) {
+            powAndCoeffsRhs[current->pow] -= current->coeff;
+        } else {
+            powAndCoeffsRhs[current->pow] = current->coeff;
+        }
+        current = current->next;
+    }
+
+
+}
+
+bool PolynomialLL::isZero() const {
+    return head == nullptr;
 }

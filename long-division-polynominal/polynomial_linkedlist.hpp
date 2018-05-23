@@ -18,8 +18,11 @@ public:
     PolynomialLL(const PolynomialLL& p);
     ~PolynomialLL();
     void add(double coeff, int pow);
+    bool isZero() const;
 
     PolynomialLL& operator+=(const PolynomialLL& rhs);
+    PolynomialLL& operator-=(const PolynomialLL& rhs);
+    PolynomialLL& operator*=(const PolynomialLL& rhs);
 
 private:
     Term* head; // head node of the terms
