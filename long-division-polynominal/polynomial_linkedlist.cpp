@@ -8,6 +8,8 @@
 
 #include "polynomial_linkedlist.hpp"
 
+#include <map>
+
 PolynomialLL::PolynomialLL() {
     head = NULL;
 }
@@ -43,7 +45,7 @@ PolynomialLL::PolynomialLL(const PolynomialLL &p) {
     this->head = head;
 }
 
-void PolynomialLL::add(int coeff, int pow) {
+void PolynomialLL::add(double coeff, int pow) {
     Term *t = new Term();
     t->coeff = coeff;
     t->pow = pow;
@@ -61,52 +63,49 @@ std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
 }
 
 PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
+    std::map<int, double, std::greater<int>> powAndCoeffs;
+
     Term *current = head;
-    Term *newTerm = new Term();
-    newTerm->coeff = current->coeff;
-    newTerm->pow = current->pow;
-    newTerm->next = nullptr;
-
-    Term *headNewTerm = newTerm;
-    current = current->next;
-
     while (current) {
-        Term *t = new Term();
-        t->coeff = current->coeff;
-        t->pow = current->pow;
-        newTerm->next = t;
-        newTerm = newTerm->next;
-        newTerm->next = nullptr;
-
+        if (powAndCoeffs[current->pow]) {
+            powAndCoeffs[current->pow] += current->coeff;
+        } else {
+            powAndCoeffs[current->pow] = current->coeff;
+        }
+        auto deleteMe = current;
         current = current->next;
+        delete deleteMe;
     }
-
 
     current = rhs.head; // Iterate through the rhs and add it
-
     while (current) {
-        bool powExist = false;
-        auto *node = headNewTerm;
-        while (node) {
-            if(current->pow == node->pow) {
-                node->coeff += current->coeff;
-                powExist = true;
-                break;
-            }
-            node = node->next;
-        }
-        if (!powExist) {
-            Term *t = new Term();
-            t->coeff = current->coeff;
-            t->pow = current->pow;
-            newTerm->next = t;
-            newTerm = newTerm->next;
-            newTerm->next = nullptr;
+        if (powAndCoeffs[current->pow]) {
+            powAndCoeffs[current->pow] += current->coeff;
+        } else {
+            powAndCoeffs[current->pow] = current->coeff;
         }
         current = current->next;
     }
 
+    auto currentIterator = powAndCoeffs.begin();
+    Term *node = new Term();
+    node->pow = currentIterator->first;
+    node->coeff = currentIterator->second;
+    node->next = nullptr;
+    auto newHead = node;
 
-    this->head = headNewTerm;
+    ++currentIterator;
+
+    for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
+        Term *t = new Term();
+        t->pow = it->first;
+        t->coeff = it->second;
+        t->next = nullptr;
+
+        node->next = t;
+        node = t;
+    }
+
+    this->head = newHead;
     return *this;
 }

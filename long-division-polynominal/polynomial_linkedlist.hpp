@@ -9,7 +9,7 @@
 
 class PolynomialLL {
     struct Term {
-        int coeff;
+        double coeff;
         int pow;
         Term *next;
     };
@@ -17,7 +17,7 @@ public:
     PolynomialLL();
     PolynomialLL(const PolynomialLL& p);
     ~PolynomialLL();
-    void add(int coeff, int pow);
+    void add(double coeff, int pow);
 
     PolynomialLL& operator+=(const PolynomialLL& rhs);
 
