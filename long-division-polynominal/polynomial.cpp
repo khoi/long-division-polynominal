@@ -219,25 +219,25 @@ std::ostream &operator<<(std::ostream &os, const Polynomial &p) {
         if (coeff == 1.0) {
             if (i > 0) {
                 if (pow >= 1)
-                    std::cout << "+";
+                    os << "+";
                 else
-                    std::cout << (i > 0 ? "+" : "") << coeff;
+                    os << (i > 0 ? "+" : "") << coeff;
             }
         } else if (coeff == -1.0) {
             if (pow >= 1)
-                std::cout << "-";
+                os << "-";
             else
-                std::cout << coeff;
+                os << coeff;
         } else if (coeff < 0.0) {
-            std::cout << "-" << -coeff << (pow != 0 ? "*" : "");
+            os << "-" << -coeff << (pow != 0 ? "*" : "");
         } else {
-            std::cout << (i > 0 ? "+" : "") << coeff << (pow != 0 ? "*" : "");
+            os << (i > 0 ? "+" : "") << coeff << (pow != 0 ? "*" : "");
         }
 
         if (pow == 1)
-            std::cout << "x";
+            os << "x";
         else if (pow > 1)
-            std::cout << "x^" << pow;
+            os << "x^" << pow;
     }
     return os;
 }

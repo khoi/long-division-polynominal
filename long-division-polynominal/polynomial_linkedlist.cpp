@@ -62,7 +62,28 @@ std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
     }
     auto node = p.head;
     while (node) {
-        os << node->coeff << "*x^" << node->pow << " ";
+        if (node->coeff == 1.0) {
+            if (node != p.head) {
+                if (node->pow >= 1)
+                    os << "+";
+                else
+                    os << (node != p.head ? "+" : "") << node->coeff;
+            }
+        } else if (node->coeff == -1.0) {
+            if (node->pow >= 1)
+                os << "-";
+            else
+                os << node->coeff;
+        } else if (node->coeff < 0.0) {
+            os << "-" << -node->coeff << (node->pow != 0 ? "*" : "");
+        } else {
+            os << (node != p.head ? "+" : "") << node->coeff << (node->pow != 0 ? "*" : "");
+        }
+
+        if (node->pow == 1)
+            os << "x";
+        else if (node->pow > 1)
+            os << "x^" << node->pow;
         node = node->next;
     }
     return os;
