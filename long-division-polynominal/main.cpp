@@ -248,16 +248,15 @@ int main(int argc, const char *argv[]) {
             return  1;
         }
 
+        if (dividend.getDegree() < divisor.getDegree()) {
+            cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
+            return 0;
+        }
+
         cout << "Method 1: Dynamic Array" << endl;
         if (dividend.isZero()) {
             cout << "Quotient = " << 0 << endl;
             cout << "Remainder = " << 0 << endl;
-            return 0;
-        }
-
-        if (dividend.getDegree() < divisor.getDegree()) {
-            cout << "Quotient = " << 0 << endl;
-            cout << "Remainder = " << dividend << endl;
             return 0;
         }
 
@@ -284,6 +283,11 @@ int main(int argc, const char *argv[]) {
         cout << "Method 2: Linkedlist" << endl;
         PolynomialLL dividend_ll = PolynomialLL(*p1.p_ll);
         PolynomialLL divisor_ll = PolynomialLL(*p2.p_ll);
+
+        if (dividend_ll.getDegree() < divisor_ll.getDegree()) {
+            cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
+            return 0;
+        }
 
         PolynomialLL q_ll = PolynomialLL();
         PolynomialLL r_ll = PolynomialLL(dividend_ll);
