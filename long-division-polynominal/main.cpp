@@ -214,7 +214,7 @@ int main(int argc, const char *argv[]) {
     }
 
     if (isPrintingName) {
-        cout << "Email goes here" << endl;
+        cout << "3694652, s3694652@rmit.edu.vn, Khoi Lai" << endl;
         return 0;
     }
 
@@ -280,7 +280,7 @@ int main(int argc, const char *argv[]) {
         cout << "Remainder = " << r << endl;
 
         /*Method 2*/
-        cout << "Method 2: Linkedlist" << endl;
+        cout << "Method 2: Linked-List" << endl;
         PolynomialLL dividend_ll = PolynomialLL(*p1.p_ll);
         PolynomialLL divisor_ll = PolynomialLL(*p2.p_ll);
 
