@@ -195,31 +195,60 @@ PolynomialLL &PolynomialLL::operator-=(const PolynomialLL &rhs) {
 
 PolynomialLL &PolynomialLL::operator*=(const PolynomialLL &rhs) {
     std::map<int, double, std::greater<int>> powAndCoeffs;
-    std::map<int, double, std::greater<int>> powAndCoeffsRhs;
 
     Term *current = head;
     while (current) {
-        if (powAndCoeffs[current->pow]) {
-            powAndCoeffs[current->pow] += current->coeff;
-        } else {
-            powAndCoeffs[current->pow] = current->coeff;
+        Term *currentRhs = rhs.head;
+        while (currentRhs) {
+            int pow = current->pow + currentRhs->pow;
+            double coeff = current->coeff * currentRhs->coeff;
+            if (coeff != 0) {
+                powAndCoeffs[pow] = coeff;
+            }
+            currentRhs = currentRhs->next;
         }
         auto deleteMe = current;
         current = current->next;
         delete deleteMe;
     }
 
-    current = rhs.head;
-    while (current) {
-        if (powAndCoeffsRhs[current->pow]) {
-            powAndCoeffsRhs[current->pow] -= current->coeff;
-        } else {
-            powAndCoeffsRhs[current->pow] = current->coeff;
+    for (auto it = powAndCoeffs.cbegin(); it != powAndCoeffs.cend();) { // Remove value where coeff = 0
+        if ((*it).second == 0) {
+            powAndCoeffs.erase(it++);
         }
-        current = current->next;
+        else {
+            ++it;
+        }
+    }
+
+    if (powAndCoeffs.empty()) {
+        this->head = NULL;
+    }
+    else {
+        auto currentIterator = powAndCoeffs.begin();
+        Term *node = new Term();
+
+        node->coeff = currentIterator->second;
+        node->pow = currentIterator->first;
+        node->next = nullptr;
+
+        auto newHead = node;
+        ++currentIterator;
+
+        for (auto it = currentIterator; it != powAndCoeffs.end(); ++it) {
+            if (it->second == 0) { continue; }
+            Term *t = new Term();
+            t->pow = it->first;
+            t->coeff = it->second;
+            t->next = nullptr;
+            node->next = t;
+            node = t;
+        }
+        this->head = newHead;
     }
 
 
+    return *this;
 }
 
 bool PolynomialLL::isZero() const {

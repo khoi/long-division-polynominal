@@ -240,7 +240,6 @@ int main(int argc, const char *argv[]) {
 
 
         /*Method 1*/
-        cout << "Method 1: Dynamic Array" << endl;
         auto dividend = *p1.p;
         auto divisor = *p2.p;
 
@@ -249,6 +248,7 @@ int main(int argc, const char *argv[]) {
             return  1;
         }
 
+        cout << "Method 1: Dynamic Array" << endl;
         if (dividend.isZero()) {
             cout << "Quotient = " << 0 << endl;
             cout << "Remainder = " << 0 << endl;
@@ -281,11 +281,9 @@ int main(int argc, const char *argv[]) {
         cout << "Remainder = " << r << endl;
 
         /*Method 2*/
-
         PolynomialLL pasdf = PolynomialLL(*p1.p_ll);
         PolynomialLL pasdf2 = PolynomialLL(*p2.p_ll);
-        pasdf += pasdf2;
-        cout << pasdf << endl;
+
     }
 
     return 0;
