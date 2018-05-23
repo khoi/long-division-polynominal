@@ -131,7 +131,7 @@ InputPair validateInput(const string &s) {
                     }
 
                     if (strContainDot(coeffString)) {
-                        cout << term << " is not a valid term. Coeff can only be integer." << endl;
+                        cout << term << " is not a valid term. Coeff can only be integer and cannot contain dot" << endl;
                         return {nullptr, nullptr};;
                     }
                 }
@@ -155,7 +155,7 @@ InputPair validateInput(const string &s) {
             }
 
             if (strContainDot(term)) {
-                cout << term << " is not a valid term. Coeff can only be integer." << endl;
+                cout << term << " is not a valid term. Coeff can only be integer and cannot contain dot." << endl;
                 return {nullptr, nullptr};;
             }
 
