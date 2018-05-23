@@ -218,90 +218,89 @@ int main(int argc, const char *argv[]) {
         return 0;
     }
 
-    if (isInNormalMode) {
-        string a;
-        string b;
+    string a;
+    string b;
 
-        cout << "Enter dividend: ";
-        cin >> a;
-        auto p1 = validateInput(a);
+    cout << "Enter dividend: ";
+    cin >> a;
+    auto p1 = validateInput(a);
 
-        if (p1.p == nullptr || p1.p_ll == nullptr) {
-            return 1;
-        }
-
-        cout << "Enter divisor: ";
-        cin >> b;
-        auto p2 = validateInput(b);
-
-        if (p2.p == nullptr || p2.p_ll == nullptr) {
-            return 1;
-        }
-
-
-        /*Method 1*/
-        auto dividend = *p1.p;
-        auto divisor = *p2.p;
-
-        if (divisor.isZero()) {
-            cout << "Divisor is not allowed to be 0" << endl;
-            return  1;
-        }
-
-        if (dividend.getDegree() < divisor.getDegree()) {
-            cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
-            return 0;
-        }
-
-        cout << "Method 1: Dynamic Array" << endl;
-        if (dividend.isZero()) {
-            cout << "Quotient = " << 0 << endl;
-            cout << "Remainder = " << 0 << endl;
-            return 0;
-        }
-
-        Polynomial q = Polynomial();
-        Polynomial r = Polynomial(dividend);
-
-        while (!r.isZero() && r.getDegree() >= divisor.getDegree()) {
-            int tmpSize = r.getDegree() - divisor.getDegree() + 1;
-            auto *tmpCoeffs = new double[tmpSize];
-            tmpCoeffs[0] = r.getCoeffs()[0] / divisor.getCoeffs()[0];
-            for (int i = 1; i < tmpSize; ++i) {
-                tmpCoeffs[i] = 0;
-            }
-            Polynomial t(tmpCoeffs, tmpSize);
-
-            q += t;
-            r -= t * divisor;
-        }
-
-        cout << "Quotient = " << q << endl;
-        cout << "Remainder = " << r << endl;
-
-        /*Method 2*/
-        cout << "Method 2: Linked-List" << endl;
-        PolynomialLL dividend_ll = PolynomialLL(*p1.p_ll);
-        PolynomialLL divisor_ll = PolynomialLL(*p2.p_ll);
-
-        if (dividend_ll.getDegree() < divisor_ll.getDegree()) {
-            cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
-            return 0;
-        }
-
-        PolynomialLL q_ll = PolynomialLL();
-        PolynomialLL r_ll = PolynomialLL(dividend_ll);
-
-        while (!r_ll.isZero() && r_ll.getDegree() >= divisor_ll.getDegree()) {
-            PolynomialLL t = PolynomialLL();
-            t.add(r_ll.getCoeff(r_ll.getDegree()) / divisor_ll.getCoeff(divisor_ll.getDegree()), r_ll.getDegree() - divisor_ll.getDegree());
-            q_ll += t;
-            r_ll -= t * divisor_ll;
-        }
-
-        cout << "Quotient = " << q << endl;
-        cout << "Remainder = " << r << endl;
+    if (p1.p == nullptr || p1.p_ll == nullptr) {
+        return 1;
     }
+
+    cout << "Enter divisor: ";
+    cin >> b;
+    auto p2 = validateInput(b);
+
+    if (p2.p == nullptr || p2.p_ll == nullptr) {
+        return 1;
+    }
+
+
+    /*Method 1*/
+    auto dividend = *p1.p;
+    auto divisor = *p2.p;
+
+    if (divisor.isZero()) {
+        cout << "Divisor is not allowed to be 0" << endl;
+        return  1;
+    }
+
+    if (dividend.getDegree() < divisor.getDegree()) {
+        cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
+        return 0;
+    }
+
+    cout << "Method 1: Dynamic Array" << endl;
+    if (dividend.isZero()) {
+        cout << "Quotient = " << 0 << endl;
+        cout << "Remainder = " << 0 << endl;
+        return 0;
+    }
+
+    Polynomial q = Polynomial();
+    Polynomial r = Polynomial(dividend);
+
+    while (!r.isZero() && r.getDegree() >= divisor.getDegree()) {
+        int tmpSize = r.getDegree() - divisor.getDegree() + 1;
+        auto *tmpCoeffs = new double[tmpSize];
+        tmpCoeffs[0] = r.getCoeffs()[0] / divisor.getCoeffs()[0];
+        for (int i = 1; i < tmpSize; ++i) {
+            tmpCoeffs[i] = 0;
+        }
+        Polynomial t(tmpCoeffs, tmpSize);
+
+        q += t;
+        r -= t * divisor;
+    }
+
+    cout << "Quotient = " << q << endl;
+    cout << "Remainder = " << r << endl;
+
+    /*Method 2*/
+    cout << "Method 2: Linked-List" << endl;
+    PolynomialLL dividend_ll = PolynomialLL(*p1.p_ll);
+    PolynomialLL divisor_ll = PolynomialLL(*p2.p_ll);
+
+    if (dividend_ll.getDegree() < divisor_ll.getDegree()) {
+        cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
+        return 0;
+    }
+
+    PolynomialLL q_ll = PolynomialLL();
+    PolynomialLL r_ll = PolynomialLL(dividend_ll);
+
+    while (!r_ll.isZero() && r_ll.getDegree() >= divisor_ll.getDegree()) {
+        PolynomialLL t = PolynomialLL();
+        t.add(r_ll.getCoeff(r_ll.getDegree()) / divisor_ll.getCoeff(divisor_ll.getDegree()), r_ll.getDegree() - divisor_ll.getDegree());
+        q_ll += t;
+        r_ll -= t * divisor_ll;
+    }
+
+    cout << "Quotient = " << q << endl;
+    cout << "Remainder = " << r << endl;
+
 
     return 0;
 }
