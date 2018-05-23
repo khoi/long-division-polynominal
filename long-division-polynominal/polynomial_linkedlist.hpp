@@ -18,6 +18,7 @@ public:
     PolynomialLL(const PolynomialLL& p);
     ~PolynomialLL();
     void add(double coeff, int pow);
+    int getLength() const;
     bool isZero() const;
 
     PolynomialLL& operator+=(const PolynomialLL& rhs);
@@ -25,6 +26,7 @@ public:
     PolynomialLL& operator*=(const PolynomialLL& rhs);
 
 private:
+    int length;
     Term* head; // head node of the terms
     friend std::ostream& operator<<(std::ostream& os, const PolynomialLL& p);
 };

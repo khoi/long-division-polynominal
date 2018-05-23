@@ -12,6 +12,7 @@
 
 PolynomialLL::PolynomialLL() {
     head = NULL;
+    length = 0;
 }
 
 PolynomialLL::~PolynomialLL() {
@@ -43,6 +44,7 @@ PolynomialLL::PolynomialLL(const PolynomialLL &p) {
     }
 
     this->head = head;
+    this->length = p.length;
 }
 
 void PolynomialLL::add(double coeff, int pow) {
@@ -51,6 +53,7 @@ void PolynomialLL::add(double coeff, int pow) {
     t->pow = pow;
     t->next = head;
     head = t;
+    ++length;
 }
 
 std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
@@ -59,7 +62,7 @@ std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
     }
     auto node = p.head;
     while (node) {
-        os << "coeff: " << node->coeff << " pow: " << node->pow << std::endl;
+        os << node->coeff << "*x^" << node->pow << " ";
         node = node->next;
     }
     return os;
@@ -99,6 +102,7 @@ PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
         }
     }
 
+    this->length = powAndCoeffs.size();
     if (powAndCoeffs.empty()) {
         this->head = NULL;
     }
@@ -163,6 +167,7 @@ PolynomialLL &PolynomialLL::operator-=(const PolynomialLL &rhs) {
         }
     }
 
+    this->length = powAndCoeffs.size();
     if (powAndCoeffs.empty()) {
         this->head = NULL;
     }
@@ -221,6 +226,7 @@ PolynomialLL &PolynomialLL::operator*=(const PolynomialLL &rhs) {
         }
     }
 
+    this->length = powAndCoeffs.size();
     if (powAndCoeffs.empty()) {
         this->head = NULL;
     }
@@ -253,4 +259,8 @@ PolynomialLL &PolynomialLL::operator*=(const PolynomialLL &rhs) {
 
 bool PolynomialLL::isZero() const {
     return head == nullptr;
+}
+
+int PolynomialLL::getLength() const {
+    return length;
 }
