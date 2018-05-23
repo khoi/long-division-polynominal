@@ -9,7 +9,6 @@
 #include "polynomial_linkedlist.hpp"
 
 PolynomialLL::PolynomialLL() {
-    length = 0;
     head = NULL;
 }
 
@@ -42,7 +41,6 @@ PolynomialLL::PolynomialLL(const PolynomialLL &p) {
     }
 
     this->head = head;
-    this->length = p.length;
 }
 
 void PolynomialLL::add(int coeff, int pow) {
@@ -51,7 +49,6 @@ void PolynomialLL::add(int coeff, int pow) {
     t->pow = pow;
     t->next = head;
     head = t;
-    length++;
 }
 
 std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
@@ -61,4 +58,53 @@ std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
         node = node->next;
     }
     return os;
+}
+
+PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
+    Term *current = head;
+    Term *newTerm = new Term();
+    newTerm->coeff = current->coeff;
+    newTerm->pow = current->pow;
+    newTerm->next = nullptr;
+
+    Term *headNewTerm = newTerm;
+    current = current->next;
+
+    while (current) {
+        Term *t = new Term();
+        t->coeff = current->coeff;
+        t->pow = current->pow;
+        newTerm->next = t;
+        newTerm = newTerm->next;
+        newTerm->next = nullptr;
+        current = current->next;
+    }
+
+
+    current = rhs.head; // Iterate through the rhs and add it
+    auto *node = headNewTerm;
+
+    while (current) {
+        bool powExist = false;
+        while (node) {
+            if(current->pow == node->pow) {
+                node->coeff += current->coeff;
+                powExist = true;
+                break;
+            }
+            node = node->next;
+        }
+        if (!powExist) {
+            Term *t = new Term();
+            t->coeff = current->coeff;
+            t->pow = current->pow;
+            newTerm->next = t;
+            newTerm = newTerm->next;
+            newTerm->next = nullptr;
+        }
+        current = current->next;
+    }
+
+
+    this->head = headNewTerm;
 }

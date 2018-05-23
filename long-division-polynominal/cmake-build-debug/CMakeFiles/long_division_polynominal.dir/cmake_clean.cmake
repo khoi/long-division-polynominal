@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/long_division_polynominal.dir/main.cpp.obj"
   "CMakeFiles/long_division_polynominal.dir/polynomial.cpp.obj"
+  "CMakeFiles/long_division_polynominal.dir/polynomial_linkedlist.cpp.obj"
   "long_division_polynominal.pdb"
   "long_division_polynominal.exe"
   "long_division_polynominal.exe.manifest"

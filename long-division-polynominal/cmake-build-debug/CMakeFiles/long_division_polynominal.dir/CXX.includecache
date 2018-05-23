@@ -9,6 +9,8 @@
 C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/main.cpp
 polynomial.hpp
 C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.hpp
+polynomial_linkedlist.hpp
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial_linkedlist.hpp
 iostream
 -
 sstream
@@ -27,6 +29,14 @@ polynomial.hpp
 C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.hpp
 
 C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.hpp
+iostream
+-
+
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial_linkedlist.cpp
+polynomial_linkedlist.hpp
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial_linkedlist.hpp
+
+C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial_linkedlist.hpp
 iostream
 -
 

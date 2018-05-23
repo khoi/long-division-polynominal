@@ -283,6 +283,8 @@ int main(int argc, const char *argv[]) {
         /*Method 2*/
 
         PolynomialLL pasdf = PolynomialLL(*p1.p_ll);
+        PolynomialLL pasdf2 = PolynomialLL(*p2.p_ll);
+        pasdf += pasdf2;
         cout << pasdf << endl;
     }
 

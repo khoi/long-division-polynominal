@@ -176,6 +176,33 @@ polynomial.cpp.s:
 	$(MAKE) -f CMakeFiles\long_division_polynominal.dir\build.make CMakeFiles/long_division_polynominal.dir/polynomial.cpp.s
 .PHONY : polynomial.cpp.s
 
+polynomial_linkedlist.obj: polynomial_linkedlist.cpp.obj
+
+.PHONY : polynomial_linkedlist.obj
+
+# target to build an object file
+polynomial_linkedlist.cpp.obj:
+	$(MAKE) -f CMakeFiles\long_division_polynominal.dir\build.make CMakeFiles/long_division_polynominal.dir/polynomial_linkedlist.cpp.obj
+.PHONY : polynomial_linkedlist.cpp.obj
+
+polynomial_linkedlist.i: polynomial_linkedlist.cpp.i
+
+.PHONY : polynomial_linkedlist.i
+
+# target to preprocess a source file
+polynomial_linkedlist.cpp.i:
+	$(MAKE) -f CMakeFiles\long_division_polynominal.dir\build.make CMakeFiles/long_division_polynominal.dir/polynomial_linkedlist.cpp.i
+.PHONY : polynomial_linkedlist.cpp.i
+
+polynomial_linkedlist.s: polynomial_linkedlist.cpp.s
+
+.PHONY : polynomial_linkedlist.s
+
+# target to generate assembly for a file
+polynomial_linkedlist.cpp.s:
+	$(MAKE) -f CMakeFiles\long_division_polynominal.dir\build.make CMakeFiles/long_division_polynominal.dir/polynomial_linkedlist.cpp.s
+.PHONY : polynomial_linkedlist.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -191,6 +218,9 @@ help:
 	@echo ... polynomial.obj
 	@echo ... polynomial.i
 	@echo ... polynomial.s
+	@echo ... polynomial_linkedlist.obj
+	@echo ... polynomial_linkedlist.i
+	@echo ... polynomial_linkedlist.s
 .PHONY : help
 
 

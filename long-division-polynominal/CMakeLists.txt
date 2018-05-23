@@ -8,4 +8,6 @@ include_directories(.)
 add_executable(long_division_polynominal
         main.cpp
         polynomial.cpp
-        polynomial.hpp)
+        polynomial.hpp
+        polynomial_linkedlist.hpp
+        polynomial_linkedlist.cpp)

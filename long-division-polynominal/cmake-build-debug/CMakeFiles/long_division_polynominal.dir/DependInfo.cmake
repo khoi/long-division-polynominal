@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/main.cpp" "C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/cmake-build-debug/CMakeFiles/long_division_polynominal.dir/main.cpp.obj"
   "C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial.cpp" "C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/cmake-build-debug/CMakeFiles/long_division_polynominal.dir/polynomial.cpp.obj"
+  "C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/polynomial_linkedlist.cpp" "C:/Users/Admin/Desktop/long-division-polynominal/long-division-polynominal/cmake-build-debug/CMakeFiles/long_division_polynominal.dir/polynomial_linkedlist.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

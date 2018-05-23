@@ -3,7 +3,11 @@
 
 CMakeFiles/long_division_polynominal.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/long_division_polynominal.dir/main.cpp.obj: ../polynomial.hpp
+CMakeFiles/long_division_polynominal.dir/main.cpp.obj: ../polynomial_linkedlist.hpp
 
 CMakeFiles/long_division_polynominal.dir/polynomial.cpp.obj: ../polynomial.cpp
 CMakeFiles/long_division_polynominal.dir/polynomial.cpp.obj: ../polynomial.hpp
+
+CMakeFiles/long_division_polynominal.dir/polynomial_linkedlist.cpp.obj: ../polynomial_linkedlist.cpp
+CMakeFiles/long_division_polynominal.dir/polynomial_linkedlist.cpp.obj: ../polynomial_linkedlist.hpp
 
