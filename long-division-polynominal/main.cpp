@@ -76,7 +76,7 @@ InputPair validateInput(const string &s) {
                 int pow;
                 double coeff;
                 if (!(ss1 >> pow && ss1.eof())) {
-                    cout << term << " is not a valid term." << endl;
+                    cout << term << " " << pow << " is not a valid pow." << endl;
                     return {nullptr, nullptr};
                 }
 
@@ -93,7 +93,7 @@ InputPair validateInput(const string &s) {
                     getline(ss2, remainString);
 
                     if (coeffConversionFail || remainString != "*") {
-                        cout << term << " is not a valid term." << endl;
+                        cout << term << " " << coeffString << " is not a valid coeff." << endl;
                         return {nullptr, nullptr};;
                     }
 
@@ -126,7 +126,7 @@ InputPair validateInput(const string &s) {
                     getline(ss, remainString);
 
                     if (coeffConversionFail || remainString != "*") {
-                        cout << term << " is not a valid term." << endl;
+                        cout << term << " " << coeffString << " is not a valid coeff." << endl;
                         return {nullptr, nullptr};;
                     }
 
@@ -150,7 +150,7 @@ InputPair validateInput(const string &s) {
             int pow = 0;
             stringstream ss(term);
             if (!(ss >> coeff && ss.eof())) {
-                cout << term << " is not a valid term." << endl;
+                cout << term << " is not a valid coeff." << endl;
                 return {nullptr, nullptr};;
             }
 
