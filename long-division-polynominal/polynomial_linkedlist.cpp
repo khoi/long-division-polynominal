@@ -89,6 +89,12 @@ std::ostream &operator<<(std::ostream &os, const PolynomialLL &p) {
     return os;
 }
 
+PolynomialLL operator*(const PolynomialLL& lhs, const PolynomialLL& rhs){
+    PolynomialLL result(lhs);
+    result *= rhs;
+    return result;
+}
+
 PolynomialLL &PolynomialLL::operator+=(const PolynomialLL &rhs) {
     std::map<int, double, std::greater<int>> powAndCoeffs;
 
@@ -284,4 +290,22 @@ bool PolynomialLL::isZero() const {
 
 int PolynomialLL::getLength() const {
     return length;
+}
+
+int PolynomialLL::getDegree() const {
+    if (head == nullptr) return 0;
+    return head->pow;
+}
+
+double PolynomialLL::getCoeff(int degree) {
+    auto *node = head;
+
+    while (node) {
+        if (node->pow == degree) {
+            return node->coeff;
+        }
+        node = node->next;
+    }
+
+    return 0;
 }

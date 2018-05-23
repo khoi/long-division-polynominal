@@ -18,8 +18,10 @@ public:
     PolynomialLL(const PolynomialLL& p);
     ~PolynomialLL();
     void add(double coeff, int pow);
+    int getDegree() const;
     int getLength() const;
     bool isZero() const;
+    double getCoeff(int degree);
 
     PolynomialLL& operator+=(const PolynomialLL& rhs);
     PolynomialLL& operator-=(const PolynomialLL& rhs);
@@ -31,3 +33,4 @@ private:
     friend std::ostream& operator<<(std::ostream& os, const PolynomialLL& p);
 };
 
+PolynomialLL operator*(const PolynomialLL& lhs, const PolynomialLL& rhs);

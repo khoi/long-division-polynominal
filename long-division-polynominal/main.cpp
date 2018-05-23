@@ -281,9 +281,22 @@ int main(int argc, const char *argv[]) {
         cout << "Remainder = " << r << endl;
 
         /*Method 2*/
-        PolynomialLL pasdf = PolynomialLL(*p1.p_ll);
-        PolynomialLL pasdf2 = PolynomialLL(*p2.p_ll);
-        cout << pasdf << endl;
+        cout << "Method 2: Linkedlist" << endl;
+        PolynomialLL dividend_ll = PolynomialLL(*p1.p_ll);
+        PolynomialLL divisor_ll = PolynomialLL(*p2.p_ll);
+
+        PolynomialLL q_ll = PolynomialLL();
+        PolynomialLL r_ll = PolynomialLL(dividend_ll);
+
+        while (!r_ll.isZero() && r_ll.getDegree() >= divisor_ll.getDegree()) {
+            PolynomialLL t = PolynomialLL();
+            t.add(r_ll.getCoeff(r_ll.getDegree()) / divisor_ll.getCoeff(divisor_ll.getDegree()), r_ll.getDegree() - divisor_ll.getDegree());
+            q_ll += t;
+            r_ll -= t * divisor_ll;
+        }
+
+        cout << "Quotient = " << q << endl;
+        cout << "Remainder = " << r << endl;
     }
 
     return 0;
