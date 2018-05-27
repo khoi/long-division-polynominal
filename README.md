@@ -1,6 +1,6 @@
 # Polynomial long division
 
-Algorithm for dividing polynomial by another polynomial. See [Wikipedia].(https://en.wikipedia.org/wiki/Polynomial_long_division)
+Algorithm for dividing polynomial by another polynomial. See [Wikipedia](https://en.wikipedia.org/wiki/Polynomial_long_division).
 
 ```
 Enter dividend: 30.0*x^34-15*x^3+2*x^2+34*x+1
