@@ -1,11 +1,3 @@
-//
-//  polynomial.hpp
-//  long-division-polynominal
-//
-//  Created by Khoi Lai on 5/10/18.
-//  Copyright © 2018 Khoi Lai. All rights reserved.
-//
-
 #include <iostream>
 
 class Polynomial {

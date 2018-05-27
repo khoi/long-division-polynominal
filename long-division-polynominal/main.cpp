@@ -1,68 +1,48 @@
-//
-//  main.cpp
-//  long-division-polynominal
-//
-//  Created by Khoi Lai on 5/10/18.
-//  Copyright © 2018 Khoi Lai. All rights reserved.
-//
-
 #include "polynomial.hpp"
-#include "polynomial_linkedlist.hpp"
-#include <iostream>
-#include <sstream>
-#include <cstring>
-#include <vector>
-#include <map>
 #include <cmath>
+#include <cstring>
+#include <iostream>
+#include <map>
+#include <sstream>
+#include <vector>
 
 #define DEBUG_MODE false
 
 using namespace std;
 
-struct InputPair {
-    Polynomial *p;
-    PolynomialLL *p_ll;
-};
-
-bool strContainDot(const string &str) {
-    return str.find('.') != string::npos;
-}
-
-void replaceSubstr(std::string& str,
-               const std::string& oldStr,
-               const std::string& newStr)
-{
+void replaceSubstr(std::string &str, const std::string &oldStr,
+                   const std::string &newStr) {
     std::string::size_type pos = 0u;
-    while((pos = str.find(oldStr, pos)) != std::string::npos){
+    while ((pos = str.find(oldStr, pos)) != std::string::npos) {
         str.replace(pos, oldStr.length(), newStr);
         pos += newStr.length();
     }
 }
 
-vector<string> split(const string& str, const string& delim)
-{
+vector<string> split(const string &str, const string &delim) {
     vector<string> tokens;
     size_t prev = 0, pos = 0;
-    do
-    {
+    do {
         pos = str.find(delim, prev);
-        if (pos == string::npos) pos = str.length();
-        string token = str.substr(prev, pos-prev);
-        if (!token.empty()) tokens.push_back(token);
+        if (pos == string::npos)
+            pos = str.length();
+        string token = str.substr(prev, pos - prev);
+        if (!token.empty())
+            tokens.push_back(token);
         prev = pos + delim.length();
-    }
-    while (pos < str.length() && prev < str.length());
+    } while (pos < str.length() && prev < str.length());
     return tokens;
 }
 
-InputPair validateInput(const string &s) {
+Polynomial *validateInput(const string &s) {
     string input(s);
     string delim = "+";
     int degree = INT_MIN;
     replaceSubstr(input, "-", "+-");
     vector<string> terms = split(input, delim);
     map<int, double> powAndCoeff;
-    for (vector<string>::const_iterator i = terms.begin(); i != terms.end(); ++i) {
+    for (vector<string>::const_iterator i = terms.begin(); i != terms.end();
+         ++i) {
         string term = *i;
         unsigned long positionOfX = term.find('x');
         bool hasX = positionOfX != string::npos;
@@ -76,8 +56,9 @@ InputPair validateInput(const string &s) {
                 int pow;
                 double coeff;
                 if (!(ss1 >> pow && ss1.eof())) {
-                    cout << term << " " << pow << " is not a valid pow." << endl;
-                    return {nullptr, nullptr};
+                    cout << term << " " << pow << " is not a valid pow."
+                         << endl;
+                    return nullptr;
                 }
 
                 string coeffString = term.substr(0, positionOfX);
@@ -93,23 +74,21 @@ InputPair validateInput(const string &s) {
                     getline(ss2, remainString);
 
                     if (coeffConversionFail || remainString != "*") {
-                        cout << term << " " << coeffString << " is not a valid coeff." << endl;
-                        return {nullptr, nullptr};;
-                    }
-
-                    if (strContainDot(coeffString)) { // Only integer is accepted as coeff according to the spec :( 3.0 is not valid
-                        cout << term << " is not a valid term. Coeff can only be integer." << endl;
-                        return {nullptr, nullptr};;
+                        cout << term << " " << coeffString
+                             << " is not a valid coeff." << endl;
+                        return nullptr;
                     }
                 }
 
                 if (coeff == 0) {
                     cout << "Coeff can't be zero." << endl;
-                    return {nullptr, nullptr};;
+                    return nullptr;
                 }
-                if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
+                if (DEBUG_MODE)
+                    cout << " has pow " << pow << " and coeff " << coeff;
                 powAndCoeff[pow] += coeff;
-                if (pow > degree) degree = pow;
+                if (pow > degree)
+                    degree = pow;
             } else { // Having pow == 1. For instance: -3*x or just x
                 int pow = 1;
                 double coeff = 0;
@@ -126,24 +105,22 @@ InputPair validateInput(const string &s) {
                     getline(ss, remainString);
 
                     if (coeffConversionFail || remainString != "*") {
-                        cout << term << " " << coeffString << " is not a valid coeff." << endl;
-                        return {nullptr, nullptr};;
-                    }
-
-                    if (strContainDot(coeffString)) {
-                        cout << term << " is not a valid term. Coeff can only be integer and cannot contain dot" << endl;
-                        return {nullptr, nullptr};;
+                        cout << term << " " << coeffString
+                             << " is not a valid coeff." << endl;
+                        return nullptr;
                     }
                 }
 
                 if (coeff == 0) {
                     cout << "Coeff can't be zero." << endl;
-                    return {nullptr, nullptr};;
+                    return nullptr;
                 }
 
-                if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
+                if (DEBUG_MODE)
+                    cout << " has pow " << pow << " and coeff " << coeff;
                 powAndCoeff[pow] += coeff;
-                if (pow > degree) degree = pow;
+                if (pow > degree)
+                    degree = pow;
             }
         } else {
             double coeff;
@@ -151,27 +128,25 @@ InputPair validateInput(const string &s) {
             stringstream ss(term);
             if (!(ss >> coeff && ss.eof())) {
                 cout << term << " is not a valid coeff." << endl;
-                return {nullptr, nullptr};;
-            }
-
-            if (strContainDot(term)) {
-                cout << term << " is not a valid term. Coeff can only be integer and cannot contain dot." << endl;
-                return {nullptr, nullptr};;
+                return nullptr;
+                ;
             }
 
             if (coeff == 0) {
                 cout << "Coeff can't be zero." << endl;
-                return {nullptr, nullptr};;
+                return nullptr;
             }
 
-            if (DEBUG_MODE) cout << " has pow " << pow << " and coeff " << coeff;
+            if (DEBUG_MODE)
+                cout << " has pow " << pow << " and coeff " << coeff;
             powAndCoeff[pow] += coeff;
-            if (pow > degree) degree = pow;
+            if (pow > degree)
+                degree = pow;
         }
-        if (DEBUG_MODE) cout << " " << term << endl;
+        if (DEBUG_MODE)
+            cout << " " << term << endl;
     }
 
-    auto p_ll = new PolynomialLL();
     int size = degree + 1;
     auto *coeffs = new double[size];
 
@@ -179,45 +154,16 @@ InputPair validateInput(const string &s) {
         coeffs[i] = 0;
     }
 
-    for(auto elem : powAndCoeff)
-    {
+    for (auto elem : powAndCoeff) {
         int pow = elem.first;
         double coeff = elem.second;
         coeffs[degree - pow] = coeff;
-        if (coeff != 0) {
-            p_ll->add(coeff, pow);
-        }
     }
 
-    return {new Polynomial(coeffs, size), p_ll};
+    return new Polynomial(coeffs, size);
 }
 
 int main(int argc, const char *argv[]) {
-    if (argc == 1) {
-        cout << "Please pass 0 or 1 as the program argument" << endl;
-        return 1;
-    }
-
-    if (argc > 2) {
-        cout << "Only 1 argument (0|1) is allowed." << endl;
-        return 1;
-    }
-
-    const char *option = argv[1];
-
-    int isPrintingName = strcmp(option, "0") == 0;
-    int isInNormalMode = strcmp(option, "1") == 0;
-
-    if (!isInNormalMode && !isPrintingName) {
-        cout << option << " is not a valid input." << endl;
-        return 1;
-    }
-
-    if (isPrintingName) {
-        cout << "3694652, s3694652@rmit.edu.vn, Khoi Lai" << endl;
-        return 0;
-    }
-
     string a;
     string b;
 
@@ -225,7 +171,7 @@ int main(int argc, const char *argv[]) {
     cin >> a;
     auto p1 = validateInput(a);
 
-    if (p1.p == nullptr || p1.p_ll == nullptr) {
+    if (p1 == nullptr) {
         return 1;
     }
 
@@ -233,26 +179,24 @@ int main(int argc, const char *argv[]) {
     cin >> b;
     auto p2 = validateInput(b);
 
-    if (p2.p == nullptr || p2.p_ll == nullptr) {
+    if (p2 == nullptr) {
         return 1;
     }
 
-
-    /*Method 1*/
-    auto dividend = *p1.p;
-    auto divisor = *p2.p;
+    auto dividend = *p1;
+    auto divisor = *p2;
 
     if (divisor.isZero()) {
         cout << "Divisor is not allowed to be 0" << endl;
-        return  1;
+        return 1;
     }
 
     if (dividend.getDegree() < divisor.getDegree()) {
-        cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
+        cout << "Divisor's degree is higher than the dividend. Terminating."
+             << endl;
         return 0;
     }
 
-    cout << "Method 1: Dynamic Array" << endl;
     if (dividend.isZero()) {
         cout << "Quotient = " << 0 << endl;
         cout << "Remainder = " << 0 << endl;
@@ -277,30 +221,5 @@ int main(int argc, const char *argv[]) {
 
     cout << "Quotient = " << q << endl;
     cout << "Remainder = " << r << endl;
-
-    /*Method 2*/
-    cout << "Method 2: Linked-List" << endl;
-    PolynomialLL dividend_ll = PolynomialLL(*p1.p_ll);
-    PolynomialLL divisor_ll = PolynomialLL(*p2.p_ll);
-
-    if (dividend_ll.getDegree() < divisor_ll.getDegree()) {
-        cout << "Divisor's degree is higher than the dividend. Terminating." << endl;
-        return 0;
-    }
-
-    PolynomialLL q_ll = PolynomialLL();
-    PolynomialLL r_ll = PolynomialLL(dividend_ll);
-
-    while (!r_ll.isZero() && r_ll.getDegree() >= divisor_ll.getDegree()) {
-        PolynomialLL t = PolynomialLL();
-        t.add(r_ll.getCoeff(r_ll.getDegree()) / divisor_ll.getCoeff(divisor_ll.getDegree()), r_ll.getDegree() - divisor_ll.getDegree());
-        q_ll += t;
-        r_ll -= t * divisor_ll;
-    }
-
-    cout << "Quotient = " << q << endl;
-    cout << "Remainder = " << r << endl;
-
-
     return 0;
 }

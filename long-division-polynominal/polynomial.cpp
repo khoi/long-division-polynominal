@@ -1,11 +1,3 @@
-//
-//  polynomial.cpp
-//  long-division-polynominal
-//
-//  Created by Khoi Lai on 5/10/18.
-//  Copyright © 2018 Khoi Lai. All rights reserved.
-//
-
 #include "polynomial.hpp"
 
 Polynomial::Polynomial() {
@@ -32,11 +24,9 @@ Polynomial::Polynomial(const Polynomial &p) {
 
 int Polynomial::getDegree() const { return size - 1; }
 
-double* Polynomial::getCoeffs() const { return coeffs; }
+double *Polynomial::getCoeffs() const { return coeffs; }
 
-bool Polynomial::isZero() const {
-    return getDegree() == 0 && coeffs[0] == 0;
-};
+bool Polynomial::isZero() const { return getDegree() == 0 && coeffs[0] == 0; };
 
 Polynomial::~Polynomial() { delete[] coeffs; }
 
@@ -84,7 +74,8 @@ Polynomial &Polynomial::operator-=(const Polynomial &rhs) {
     int idx = 0;
 
     while (idx < tmpSize - 1) { // Left truncating coeffs = 0
-        if (tmpCoeffs[idx] != 0) break;
+        if (tmpCoeffs[idx] != 0)
+            break;
         ++idx;
     }
 
